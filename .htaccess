@@ -1,0 +1,14 @@
+# Disable caching for HTML files — always serve fresh
+<FilesMatch "\.(html|htm)$">
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+  Header set Pragma "no-cache"
+  Header set Expires 0
+</FilesMatch>
+
+# Cache static assets aggressively (fonts, images, video, css, js)
+<FilesMatch "\.(css|js|ttf|woff|woff2|png|jpg|jpeg|gif|ico|svg|mp4|webm)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+# Serve correct MIME type for MP4
+AddType video/mp4 .mp4
