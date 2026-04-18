@@ -379,7 +379,7 @@ if (gateForm) gateForm.addEventListener('submit', (e) => {
 
   // TODO: set before production — see setup-sheets.md
   // Google Sheets webhook — replace SHEETS_WEBHOOK_URL with your deployed Apps Script URL.
-  const SHEETS_WEBHOOK_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+  const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbz2omY-_KPy-fupLkJykjWflYKvWqQ9eOjPJE33o6cvxwhO5ChumocPLbDF1k2t6LH-UQ/exec';
   if (SHEETS_WEBHOOK_URL && !SHEETS_WEBHOOK_URL.startsWith('PASTE_')) {
     // no-cors + form body so it works cross-origin without CORS headers
     const body = new URLSearchParams();
