@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>DMA Readiness Assessment — Report</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:   #1C3423;
+    --secondary: #67A97B;
+    --accent:    #337551;
+    --neutral:   #E8E4DD;
+    --paper:     #FFFFFF;
+    --ink:       #1C3423;
+    --muted:     #6E7770;
+    --line:      #C8C2B8;
+    --soft:      #F2EFE9;
+    --head: 'Instrument Sans', system-ui, sans-serif;
+    --body: 'Work Sans', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{ margin:0; background:#E8E4DD; color:var(--ink); font-family:var(--body); -webkit-font-smoothing:antialiased; }
+
+  /* Page = US Letter portrait */
+  .page{
+    width: 8.5in;
+    min-height: 11in;
+    padding: 0.6in 0.6in 0.5in;
+    background:#fff;
+    margin: 0.4in auto;
+    position:relative;
+    color:var(--ink);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    page-break-after: always;
+    break-after: page;
+    display:flex; flex-direction:column;
+  }
+  .page:last-child{ page-break-after: auto; break-after: auto; margin-bottom: 0.4in;}
+
+  /* ---- Page header ---- */
+  .ph{
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:18px;
+  }
+  .ph .logo{display:flex; align-items:center; gap:10px;}
+  .ph .mark{
+    width:28px;height:28px;border-radius:6px; background:var(--primary);
+    display:flex;align-items:center;justify-content:center; color:var(--neutral);
+  }
+  .ph .mark svg{width:18px;height:18px}
+  .ph .name{ font-family:var(--head); font-size:13px; font-weight:600; color:var(--primary)}
+  .ph .meta{ font-family:var(--body); font-size:10px; color:var(--muted); text-align:right; line-height:1.3;}
+  .ph .meta b{color:var(--ink); font-weight:600}
+
+  /* ---- Page footer ---- */
+  .pf{
+    margin-top:auto;
+    padding-top:14px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--body); font-size:9px; color:var(--muted); letter-spacing:0.5px;
+  }
+  .pf b{color:var(--primary); font-weight:600}
+
+  h1,h2,h3,h4,h5{ font-family:var(--head); margin:0; color:var(--ink); font-weight:600;}
+  p{ line-height:1.5;}
+
+  .label{ font-family:var(--body); font-size:9px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); font-weight:500;}
+
+  /* ============ COVER PAGE ============ */
+  .cover{ display:flex; flex-direction:column; justify-content:space-between; min-height: 9.9in;}
+  .cover-hero{}
+  .cover .kicker{ font-family:var(--body); font-size:11px; color:var(--accent); letter-spacing:2px; text-transform:uppercase; font-weight:600; margin-top:60px;}
+  .cover h1{ font-family:var(--head); font-size:60px; line-height:1; letter-spacing:-1.5px; margin:18px 0 10px; max-width:6in;}
+  .cover .sub{ font-family:var(--head); font-size:22px; color:var(--muted); line-height:1.2; max-width:5.5in; font-weight:400;}
+  .cover-stamp{
+    margin-top:60px;
+    display:grid; grid-template-columns: auto 1fr; gap:36px; align-items:center;
+    padding:28px 32px; border:1px solid var(--line); border-radius:14px;
+    background: linear-gradient(180deg, rgba(103,169,123,0.04), rgba(103,169,123,0));
+  }
+  .cover-stamp .score-big{
+    font-family:var(--head); font-size:120px; line-height:0.9; color:var(--primary);
+    font-weight:600; letter-spacing:-5px;
+    display:flex; align-items:baseline; gap:4px;
+  }
+  .cover-stamp .score-big small{
+    font-family:var(--head); font-size:28px; color:var(--muted); font-weight:500; letter-spacing:-1px;
+  }
+  .cover-stamp .score-side{ border-left:1px solid var(--line); padding-left:28px; align-self:stretch; display:flex; flex-direction:column; justify-content:center;}
+  .cover-stamp .score-side .label{margin-bottom:6px;}
+  .cover-stamp .tier-name{ font-family:var(--head); font-size:36px; color:var(--accent); font-weight:600; line-height:1; letter-spacing:-0.5px;}
+  .cover-stamp .tier-desc{ font-size:13px; color:var(--ink); margin-top:10px; max-width:3.5in; line-height:1.5}
+
+  .cover-meta-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:40px;
+  }
+  .cover-meta-grid .m{
+    border:1px solid var(--line); border-radius:8px; padding:14px;
+  }
+  .cover-meta-grid .m .l{ font-family:var(--body); font-size:9px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); font-weight:500;}
+  .cover-meta-grid .m .v{ font-family:var(--head); font-size:18px; color:var(--primary); margin-top:4px; font-weight:600;}
+
+  .cover-foot{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    border-top:1px solid var(--line); padding-top:14px; margin-top:30px;
+  }
+  .cover-foot .org{font-family:var(--head); font-size:14px; color:var(--primary); font-weight:600}
+  .cover-foot .date{font-family:var(--body); font-size:11px; color:var(--muted)}
+
+  /* ============ TIER LADDER ============ */
+  .tier-ladder{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:24px;
+  }
+  .tier-ladder .rung{
+    border:1px solid var(--line); padding:10px 12px; border-radius:8px;
+    text-align:center;
+  }
+  .tier-ladder .rung.current{ background:var(--accent); color:#fff; border-color:var(--accent);}
+  .tier-ladder .rung.current .label{color:rgba(255,255,255,0.8)}
+  .tier-ladder .rung .n{ font-family:var(--head); font-size:14px; margin-top:4px; font-weight:600;}
+
+  /* ============ Content blocks ============ */
+  h2.section{
+    font-family:var(--head); font-size:24px; margin:0 0 6px; font-weight:600; letter-spacing:-0.5px;
+  }
+  h2.section + .lede{ font-size:13px; color:var(--muted); margin:0 0 18px; max-width:6in;}
+
+  .panel{
+    border:1px solid var(--line); border-radius:10px; padding:18px;
+  }
+  .panel.tonal{background:var(--soft)}
+  .panel.dark{background:var(--primary); color:var(--neutral); border-color:var(--primary)}
+  .panel.dark h3, .panel.dark .label{color:var(--neutral)}
+  .panel.dark .label{opacity:0.7}
+
+  /* Category breakdown */
+  .cat-row{ display:grid; grid-template-columns:1.3in 1fr 0.4in; gap:10px; align-items:center; margin-bottom:8px; font-size:12px;}
+  .cat-row .name{font-weight:500}
+  .cat-row .track{height:7px;border-radius:99px; background:var(--neutral); overflow:hidden}
+  .cat-row .tf{height:100%;background:var(--accent);}
+  .cat-row .tf.low{background:var(--secondary); opacity:0.75}
+  .cat-row .tf.high{background:var(--primary)}
+  .cat-row .val{font-family:var(--head); font-size:12px; text-align:right; color:var(--primary); font-weight:600}
+
+  /* Strengths/gaps */
+  .swot{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;}
+  .swot h4{font-family:var(--head); font-size:13px; margin:0 0 8px; font-weight:600;}
+  .swot ul{list-style:none; padding:0; margin:0; display:grid; gap:6px}
+  .swot li{font-size:12px; line-height:1.4; padding-left:14px; position:relative}
+  .swot li::before{content:"●"; position:absolute; left:0; color:var(--accent); font-size:8px; top:5px}
+  .swot li b{color:var(--primary); font-weight:600}
+
+  /* Opportunities */
+  .opps-grid{ display:grid; grid-template-columns:1fr; gap:10px;}
+  .opp{
+    display:grid; grid-template-columns: 0.6in 1fr 1.4in; gap:14px;
+    border:1px solid var(--line); border-radius:10px; padding:14px 16px; align-items:start;
+  }
+  .opp .rank{
+    font-family:var(--head); font-size:24px; color:var(--accent); line-height:1; font-weight:600;
+  }
+  .opp .rank small{display:block; font-family:var(--body); font-size:9px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-top:4px; font-weight:500;}
+  .opp h4{font-family:var(--head); font-size:14px; color:var(--primary); margin:0 0 4px; font-weight:600;}
+  .opp p{font-size:11px; color:var(--ink); margin:0; line-height:1.45;}
+  .opp .meta{
+    text-align:right; font-size:10px; line-height:1.5;
+  }
+  .opp .meta .impact{font-family:var(--head); font-size:13px; color:var(--accent); font-weight:600; display:block;}
+  .opp .meta .build{font-family:var(--body); color:var(--muted); display:block; margin-top:2px}
+
+  /* Q&A appendix */
+  .qa-list{ display:grid; gap:6px; margin-top:8px;}
+  .qa-item{
+    display:grid; grid-template-columns: 0.3in 1fr auto; gap:10px; align-items:baseline;
+    border-bottom:1px dotted var(--line); padding:6px 0; font-size:11px;
+  }
+  .qa-item .num{font-family:var(--head); font-size:12px; color:var(--accent); font-weight:600;}
+  .qa-item .q{color:var(--ink)}
+  .qa-item .q .cat{font-family:var(--body); font-size:9px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); display:block; margin-bottom:1px;}
+  .qa-item .a{font-family:var(--head); font-size:11px; color:var(--primary); font-weight:600; text-align:right; max-width:2.4in;}
+  .qa-item .a .skip{color:var(--muted); font-style:italic; font-weight:400}
+
+  /* Roadmap */
+  .roadmap{ margin-top:14px;}
+  .phase{
+    display:grid; grid-template-columns: 1in 1fr; gap:14px; padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .phase:last-child{border-bottom:none}
+  .phase .when{
+    font-family:var(--head); font-size:12px; color:var(--accent); font-weight:600;
+  }
+  .phase .when small{display:block; font-family:var(--body); font-size:9px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-top:2px; font-weight:500;}
+  .phase h4{font-family:var(--head); font-size:14px; margin:0 0 4px; font-weight:600;}
+  .phase p{font-size:11px; color:var(--ink); margin:0 0 6px; line-height:1.45}
+  .phase ul{margin:0; padding-left:16px; font-size:11px; color:var(--ink); line-height:1.45}
+
+  /* CTA on last page */
+  .cta-card{
+    margin-top:18px; padding:22px;
+    background:var(--primary); color:var(--neutral); border-radius:12px;
+  }
+  .cta-card h3{font-family:var(--head); font-size:20px; color:var(--neutral); margin:0 0 6px; font-weight:600;}
+  .cta-card p{font-size:12px; line-height:1.5; opacity:0.85; margin:0 0 14px}
+  .cta-card .row{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+  .cta-card .contact{font-family:var(--head); font-size:13px;}
+  .cta-card .contact small{font-family:var(--body); font-size:10px; opacity:0.6; letter-spacing:1px; text-transform:uppercase; display:block; font-weight:500;}
+
+  /* ============ PRINT ============ */
+  @page { size: letter portrait; margin: 0; }
+  @media print{
+    html,body{ background:#fff; }
+    .page{
+      box-shadow:none; margin:0; width:8.5in; min-height: 11in;
+      page-break-after: always; break-after: page;
+    }
+    .page:last-child{page-break-after:auto; break-after:auto}
+    .no-print{display:none !important}
+  }
+
+  /* Print toolbar */
+  .print-bar{
+    position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+    background:var(--primary); color:var(--neutral); padding:10px 16px;
+    border-radius:99px; display:flex; gap:12px; align-items:center;
+    font-family:var(--body); font-size:13px; z-index:100;
+    box-shadow:0 8px 24px rgba(28,52,35,0.25);
+  }
+  .print-bar button{
+    background:var(--secondary); color:var(--primary); border:none;
+    padding:7px 14px; border-radius:99px; font-family:var(--body); font-size:12px; font-weight:600;
+    cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="print-bar no-print">
+  Use <b>⌘P</b> / <b>Ctrl+P</b> → Save as PDF
+  <button onclick="window.print()">Print now</button>
+  <a href="index.html" style="color:var(--neutral); opacity:0.7; font-size:11px; margin-left:8px; text-decoration:none">← back</a>
+</div>
+
+<!-- ============ PAGE 1 — COVER ============ -->
+<section class="page cover">
+  <div class="ph">
+    <div class="logo" style="display:flex;align-items:center;gap:12px">
+      <img src="/assets/images/logo.png" alt="Decentralized Machine Automation" style="height:44px;width:auto;display:block" />
+      <span class="name" style="border-left:2px solid rgba(28,52,35,0.15); padding-left:12px">Decentralized Machine Automation</span>
+    </div>
+    <div class="meta">
+      <b>Business Readiness Assessment</b><br>
+      Confidential · prepared for client review
+    </div>
+  </div>
+
+  <div class="cover-hero">
+    <span class="kicker">Business Readiness Report</span>
+    <h1>Your automation &amp; AI readiness, scored.</h1>
+    <p class="sub">Six categories. Twenty-five questions. One concrete starting line.</p>
+  </div>
+
+  <div class="cover-stamp">
+    <div class="score-big" id="cover-score"><span id="cover-score-n">62</span><small>/100</small></div>
+    <div class="score-side">
+      <div class="label">Readiness tier</div>
+      <div class="tier-name" id="cover-tier-name">Developing</div>
+      <p class="tier-desc" id="cover-tier-desc">You've got real foundations. A few targeted fixes unlock meaningful gains.</p>
+    </div>
+  </div>
+
+  <div class="tier-ladder" id="cover-ladder">
+    <div class="rung" data-tier="0"><div class="label">Beginner</div><div class="n">0–39</div></div>
+    <div class="rung" data-tier="1"><div class="label">Developing</div><div class="n">40–64</div></div>
+    <div class="rung" data-tier="2"><div class="label">Ready</div><div class="n">65–84</div></div>
+    <div class="rung" data-tier="3"><div class="label">Advanced</div><div class="n">85–100</div></div>
+  </div>
+
+  <div class="cover-meta-grid">
+    <div class="m"><div class="l">Questions</div><div class="v" id="cover-qcount">25</div></div>
+    <div class="m"><div class="l">Answered</div><div class="v" id="cover-answered">25</div></div>
+    <div class="m"><div class="l">Categories</div><div class="v">6</div></div>
+    <div class="m"><div class="l">Date</div><div class="v" id="cover-date">Apr 17, 2026</div></div>
+  </div>
+
+  <div class="cover-foot">
+    <div>
+      <div class="org">Prepared by Decentralized Machine Automation</div>
+      <div class="date">decentralizedma.com · Autonomous Systems · Distributed Control</div>
+    </div>
+    <div class="date">Page 1 of 4</div>
+  </div>
+</section>
+
+<!-- ============ PAGE 2 — SUMMARY ============ -->
+<section class="page">
+  <div class="ph">
+    <div class="logo" style="display:flex;align-items:center;gap:10px"><img src="/assets/images/logo.png" alt="DMA" style="height:32px;width:auto;display:block" /><span class="name" style="border-left:2px solid var(--line); padding-left:10px">DMA · Readiness Report</span></div>
+    <div class="meta"><b>Section 1</b><br>Executive summary</div>
+  </div>
+
+  <h2 class="section">Where you stand</h2>
+  <p class="lede" id="summary-lede">A workable foundation with clear strengths to lean on and specific gaps to close before scaling automation.</p>
+
+  <div class="panel tonal" style="margin-bottom:18px">
+    <div class="label">Category breakdown</div>
+    <div id="sum-cats" style="margin-top:10px"></div>
+  </div>
+
+  <div class="panel">
+    <h3 style="font-family:var(--head); font-size:16px; margin:0 0 6px; font-weight:600;">What this means for you</h3>
+    <p id="sum-narrative" style="font-size:12px; color:var(--ink); margin:0 0 12px; line-height:1.55;">
+      You have a workable foundation. Your team is motivated and your processes are partially documented — but fragmented data and weak integrations will be the first wall you hit.
+    </p>
+    <div class="swot">
+      <div>
+        <h4>Strengths</h4>
+        <ul id="sum-strengths"></ul>
+      </div>
+      <div>
+        <h4>Gaps to close first</h4>
+        <ul id="sum-gaps"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf">
+    <span><b>DMA</b> · Business Readiness Report</span>
+    <span>Page 2 of 4</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 3 — OPPORTUNITIES + ROADMAP ============ -->
+<section class="page">
+  <div class="ph">
+    <div class="logo" style="display:flex;align-items:center;gap:10px"><img src="/assets/images/logo.png" alt="DMA" style="height:32px;width:auto;display:block" /><span class="name" style="border-left:2px solid var(--line); padding-left:10px">DMA · Readiness Report</span></div>
+    <div class="meta"><b>Section 2</b><br>Opportunities &amp; roadmap</div>
+  </div>
+
+  <h2 class="section">Top automation opportunities</h2>
+  <p class="lede">Ranked by impact ÷ effort, given your answers. Each is a project we've shipped variations of before.</p>
+
+  <div class="opps-grid" id="opps-list"></div>
+
+  <h2 class="section" style="margin-top:24px">Suggested 90-day roadmap</h2>
+  <p class="lede">A phased path that respects your tier — foundations first, then quick wins, then leverage.</p>
+
+  <div class="roadmap" id="roadmap">
+    <div class="phase">
+      <div class="when">Weeks 1–4<small>Foundation</small></div>
+      <div>
+        <h4>Stabilize the substrate</h4>
+        <p>Close your weakest category before building on top of it. This is unglamorous but every project downstream depends on it.</p>
+        <ul id="phase-1"></ul>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Weeks 5–10<small>First win</small></div>
+      <div>
+        <h4>Ship a visible pilot</h4>
+        <p>Pick the highest-impact opportunity that's now buildable. Aim for measurable hours-saved or revenue lift in 6 weeks.</p>
+        <ul>
+          <li>Build, test, and roll out the #1 opportunity above</li>
+          <li>Track the baseline metric weekly so the win is undeniable</li>
+          <li>Internal showcase — get the rest of the org on board</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="when">Weeks 11–13<small>Scale</small></div>
+      <div>
+        <h4>Compound the gains</h4>
+        <p>Use the credibility from the pilot to fund the next two projects in parallel.</p>
+        <ul>
+          <li>Kick off opportunities #2 and #3 with documented KPIs</li>
+          <li>Stand up a lightweight automation governance cadence</li>
+          <li>Plan quarter 2 — start measuring labor hours saved</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf">
+    <span><b>DMA</b> · Business Readiness Report</span>
+    <span>Page 3 of 4</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 4 — APPENDIX + CTA ============ -->
+<section class="page">
+  <div class="ph">
+    <div class="logo" style="display:flex;align-items:center;gap:10px"><img src="/assets/images/logo.png" alt="DMA" style="height:32px;width:auto;display:block" /><span class="name" style="border-left:2px solid var(--line); padding-left:10px">DMA · Readiness Report</span></div>
+    <div class="meta"><b>Section 3</b><br>Your answers</div>
+  </div>
+
+  <h2 class="section">Your answers</h2>
+  <p class="lede">For your records and for the DMA team to reference during the review call.</p>
+
+  <div class="qa-list" id="qa-list"></div>
+
+  <div class="cta-card">
+    <h3>Want DMA to walk you through this?</h3>
+    <p>A 30-minute review with our team — we'll refine the roadmap, quote the first pilot, and show similar projects we've shipped.</p>
+    <div class="row">
+      <div class="contact">
+        <small>Schedule a call</small>
+        calendar.app.google/gd6ZC7kTfLV4Lqw1A
+      </div>
+      <div class="contact">
+        <small>Or email us</small>
+        jescobar@decentralizedma.com
+      </div>
+    </div>
+  </div>
+
+  <div class="pf">
+    <span><b>DMA</b> · Business Readiness Report · decentralizedma.com</span>
+    <span>Page 4 of 4</span>
+  </div>
+</section>
+
+<script>
+// Pull state from localStorage (set by main app), or fall back to a demo
+const CATEGORIES = [
+  {id:'proc',  name:'Processes',           short:'Processes'},
+  {id:'data',  name:'Data',                short:'Data'},
+  {id:'tech',  name:'Tech Stack',          short:'Tech Stack'},
+  {id:'team',  name:'Team & Skills',       short:'Team'},
+  {id:'labor', name:'Labor Inventory',     short:'Labor'},
+  {id:'lead',  name:'Leadership & Culture',short:'Leadership'},
+];
+const QUESTIONS = [
+  {cat:'proc', text:'How documented are your core operating procedures?', options:[{t:'Mostly in people\'s heads',score:0},{t:'Some written down, scattered',score:1},{t:'A handbook exists, partially current',score:2},{t:'Most are documented and actively maintained',score:3},{t:'Fully documented, versioned, measured',score:4}]},
+  {cat:'proc', text:'How often do processes get updated when something changes?', options:[{t:'Rarely — docs drift fast',score:0},{t:'When someone complains',score:1},{t:'Quarterly reviews',score:2},{t:'As-needed, with ownership',score:3},{t:'Continuously, with a change log',score:4}]},
+  {cat:'proc', text:'How consistently is the same job done the same way across people?', options:[{t:'Every person has their own way',score:0},{t:'A few common patterns',score:1},{t:'Mostly similar, some variance',score:2},{t:'Standardized with exceptions',score:3},{t:'Fully standardized and audited',score:4}]},
+  {cat:'proc', text:'Are your key processes measured (cycle time, error rate, throughput)?', options:[{t:'No measurement',score:0},{t:'Gut feel only',score:1},{t:'Some spot-checks',score:2},{t:'Regular reports for a few',score:3},{t:'Live metrics for all critical processes',score:4}]},
+  {cat:'data', text:'How accessible is your operational data today?', options:[{t:'Locked in people\'s heads or notebooks',score:0},{t:'Spread across spreadsheets',score:1},{t:'Scattered across systems, exports possible',score:2},{t:'Centralized, queryable, not real-time',score:3},{t:'Live, centralized, API-accessible',score:4}]},
+  {cat:'data', text:'How clean and trustworthy is the data inside your core systems?', options:[{t:'We don\'t trust it',score:0},{t:'We trust it for some things',score:1},{t:'Mostly trustworthy, with caveats',score:2},{t:'Clean with known exceptions',score:3},{t:'Actively governed and audited',score:4}]},
+  {cat:'data', text:'Do you have a single source of truth for customer or job records?', options:[{t:'No — depends who you ask',score:0},{t:'Multiple systems that drift daily',score:1},{t:'Multiple systems, mostly synced',score:2},{t:'One primary, a few mirrors',score:3},{t:'Yes — one authoritative system',score:4}]},
+  {cat:'data', text:'How long does it take to answer a basic business question with data?', options:[{t:'Days — or we don\'t bother',score:0},{t:'Several hours of pulling',score:1},{t:'About an hour',score:2},{t:'A few minutes in a dashboard',score:3},{t:'Instant — it\'s on a wall somewhere',score:4}]},
+  {cat:'tech', text:'Which of your core systems expose APIs or integrations?', options:[{t:'None that we\'ve used',score:0},{t:'One or two',score:1},{t:'Some',score:2},{t:'Most',score:3},{t:'All major ones, well-documented',score:4}]},
+  {cat:'tech', text:'How often does your team re-enter the same data into different tools?', options:[{t:'Constantly',score:0},{t:'Daily',score:1},{t:'Weekly',score:2},{t:'Rarely',score:3},{t:'Never — everything\'s wired',score:4}]},
+  {cat:'tech', text:'How mature is your security, access control, and backup posture?', options:[{t:'Ad-hoc, shared passwords',score:0},{t:'Basic — per-user logins',score:1},{t:'Role-based, some audits',score:2},{t:'SSO, MFA, regular backups',score:3},{t:'SOC 2 / similar, full program',score:4}]},
+  {cat:'tech', text:'Who can make small changes or add integrations when needed?', options:[{t:'No one internal',score:0},{t:'Only an outside vendor',score:1},{t:'One overloaded person',score:2},{t:'A small capable team',score:3},{t:'A full tech/ops team',score:4}]},
+  {cat:'team', text:'How familiar is your team with AI tools (ChatGPT, Claude, Copilot, etc.)?', options:[{t:'Almost no one uses them',score:0},{t:'A handful experimenting',score:1},{t:'Half the team dabbles',score:2},{t:'Most people use them weekly',score:3},{t:'Daily and integrated into work',score:4}]},
+  {cat:'team', text:'How open is your team to changing how they work?', options:[{t:'Strong resistance',score:0},{t:'Cautious — needs convincing',score:1},{t:'Mixed — some eager, some not',score:2},{t:'Generally willing',score:3},{t:'Actively pushing for change',score:4}]},
+  {cat:'team', text:'Do you have someone internal who could own an automation project?', options:[{t:'No',score:0},{t:'Someone could if we freed them up',score:1},{t:'Yes, but part-time',score:2},{t:'Yes, dedicated at least half-time',score:3},{t:'Yes, a full-time lead',score:4}]},
+  {cat:'team', text:'How well does your team understand what AI can and can\'t do today?', options:[{t:'Mostly hype or fear',score:0},{t:'Broad awareness, little depth',score:1},{t:'Some realistic understanding',score:2},{t:'Practical, with boundaries',score:3},{t:'Nuanced, tool-selection-level',score:4}]},
+  {cat:'labor', text:'Do you know which tasks eat the most person-hours each week?', options:[{t:'Not really',score:0},{t:'Rough intuition',score:1},{t:'A list we\'ve discussed',score:2},{t:'Documented with hour estimates',score:3},{t:'Measured with time-tracking data',score:4}]},
+  {cat:'labor', text:'How much of the weekly work is repetitive and rule-based?', options:[{t:'Almost none — it\'s all judgment',score:0},{t:'Some, hard to extract',score:1},{t:'A meaningful chunk',score:2},{t:'A lot — we feel it daily',score:3},{t:'Majority — we\'re drowning in it',score:4}]},
+  {cat:'labor', text:'Where is the biggest time sink right now?', options:[{t:'Data entry & reconciliation',score:2},{t:'Reporting & spreadsheets',score:2},{t:'Customer email & messaging',score:2},{t:'Scheduling & coordination',score:2},{t:'Quoting / invoicing / billing',score:2}]},
+  {cat:'labor', text:'Have you ever calculated what repetitive work costs you per year?', options:[{t:'Never',score:0},{t:'A rough guess',score:1},{t:'A back-of-envelope number',score:2},{t:'Yes — documented',score:3},{t:'Yes, and tracked month-to-month',score:4}]},
+  {cat:'lead', text:'How bought-in is leadership on investing in automation / AI?', options:[{t:'Skeptical',score:0},{t:'Curious, not committed',score:1},{t:'Willing to try small',score:2},{t:'Actively sponsoring it',score:3},{t:'It\'s a named strategic priority',score:4}]},
+  {cat:'lead', text:'Is there budget available for an initial pilot (3–6 months)?', options:[{t:'No budget',score:0},{t:'Need to carve from elsewhere',score:1},{t:'Some discretionary funds',score:2},{t:'Yes, allocated for this year',score:3},{t:'Multi-year budget committed',score:4}]},
+  {cat:'lead', text:'How does leadership handle the 3–6 month payoff curve most automations require?', options:[{t:'Needs to see value in weeks',score:0},{t:'Impatient, but persuadable',score:1},{t:'Cautiously patient',score:2},{t:'Comfortable with a quarter or two',score:3},{t:'Thinks in 1–3 year horizons',score:4}]},
+  {cat:'lead', text:'How clear is your vision for what automation should achieve?', options:[{t:'Not clear — exploring',score:0},{t:'A few wishes, no plan',score:1},{t:'Goals, no KPIs',score:2},{t:'Clear goals with metrics',score:3},{t:'Strategy with phased roadmap',score:4}]},
+  {cat:'lead', text:'How does your culture respond when a pilot fails or needs to pivot?', options:[{t:'People lose jobs over failures',score:0},{t:'Blame before learning',score:1},{t:'Tolerated but not celebrated',score:2},{t:'Treated as learning',score:3},{t:'Actively encouraged experimentation',score:4}]},
+];
+const TIERS = [
+  {name:'Beginner',   min:0,  max:39, desc:'You\'re early. The foundations need work before automation will stick. Start there.'},
+  {name:'Developing', min:40, max:64, desc:'You\'ve got real foundations. A few targeted fixes unlock meaningful gains — you\'re well-positioned to pilot within a quarter.'},
+  {name:'Ready',      min:65, max:84, desc:'You\'re ready to move. Time to pick the first 2–3 high-leverage projects and run.'},
+  {name:'Advanced',   min:85, max:100,desc:'You\'re ahead of the curve. The question is how to operationalize continuous AI adoption.'},
+];
+const STR = {
+  proc:'your processes are repeatable enough to hand to software',
+  data:'your data is accessible, which is half the battle',
+  tech:'your tools can talk — integration is not a blocker',
+  team:'your people are ready to work alongside AI',
+  labor:'you already know where the time goes, so targeting is easy',
+  lead:'leadership is on board — sponsorship is often the hardest piece',
+};
+const GAP = {
+  proc:'undocumented work is hard to automate — capture it first',
+  data:'clean, centralized data is the fuel for everything else',
+  tech:'systems that don\'t talk force humans to be the glue',
+  team:'upskilling + a named owner will decide if anything sticks',
+  labor:'measure where time actually goes before you build',
+  lead:'secure explicit budget and a 2-quarter runway before starting',
+};
+const PHASE1 = {
+  proc:['Document top 5 workflows in a 2-week capture sprint','Assign process owners and a single source of truth','Pick one workflow to instrument with cycle-time metrics'],
+  data:['Audit and dedupe customer master data','Pick one centralized warehouse / SoT system','Stand up basic data quality monitoring'],
+  tech:['Map every system + which APIs they expose','Pick an integration platform (Zapier / Make / n8n / custom)','Wire CRM ↔ ops as the first integration'],
+  team:['Run a 2-hour AI literacy session for all staff','Identify and fund a half-time automation lead','Set up a #automation channel for sharing wins'],
+  labor:['Have 5 people log time for one week','Compile the top 10 time sinks across the team','Estimate annual hours per repetitive task'],
+  lead:['Secure a named exec sponsor and a 6-month budget','Define 2–3 KPIs the program will move','Communicate the "patient capital" message to staff'],
+};
+
+const OPPS = [
+  {id:'ops_int', title:'CRM ↔ ops integration', cats:['tech','data'], desc:'Wire your two most-used systems so data flows automatically. Unblocks every automation downstream.', build:'4-week build', impact:'Unlocks roadmap'},
+  {id:'report', title:'Automated weekly reporting', cats:['data','labor'], desc:'Replace hours of spreadsheet-wrangling per week with a dashboard that refreshes itself.', build:'3-week build', impact:'High leverage'},
+  {id:'recon', title:'Inventory / invoice reconciliation', cats:['labor','data'], desc:'Automated matching with exception flagging. Humans only touch the 5% that needs judgment.', build:'6-week build', impact:'High leverage'},
+  {id:'quote', title:'AI-assisted quote drafting', cats:['team','labor'], desc:'LLM drafts quotes from the customer brief using your pricing rules; rep reviews and sends.', build:'10-week build', impact:'Faster cycle time'},
+  {id:'triage', title:'Inbound email triage + drafting', cats:['team','labor'], desc:'Classifies and drafts replies to routine customer emails. Team reviews and sends.', build:'5-week build', impact:'High leverage'},
+  {id:'proc_cap', title:'Process capture workshop', cats:['proc'], desc:'Two-week sprint to document your top 5 workflows so they become automatable.', build:'2-week sprint', impact:'Foundational'},
+  {id:'data_clean', title:'Customer master data cleanup', cats:['data'], desc:'Dedupe + canonicalize your customer records before wiring anything to them.', build:'4-week build', impact:'Foundational'},
+  {id:'enablement', title:'Team AI enablement program', cats:['team','lead'], desc:'Structured rollout of AI tools with training, guardrails, and internal champions.', build:'6-week program', impact:'Team productivity'},
+];
+
+// Load saved answers (set by main app dl button)
+let answers = null;
+try {
+  const s = JSON.parse(localStorage.getItem('dma-print-state') || localStorage.getItem('dma-answers') || 'null');
+  if(s && Array.isArray(s.answers) && s.answers.length === QUESTIONS.length){
+    answers = s.answers;
+  }
+} catch(e){}
+
+// If none, generate a realistic demo
+if(!answers || answers.every(a => a === null)){
+  answers = QUESTIONS.map(q => {
+    const n = q.options.length;
+    return Math.min(n-1, Math.max(0, Math.floor(Math.random()*n*0.85 + n*0.25)));
+  });
+}
+
+function compute(){
+  let total = 0, maxTotal = 0;
+  const byCat = {};
+  CATEGORIES.forEach(c => byCat[c.id] = {sum:0, max:0});
+  QUESTIONS.forEach((q, i) => {
+    const a = answers[i];
+    const maxOpt = Math.max(...q.options.map(o => o.score));
+    byCat[q.cat].max += maxOpt;
+    maxTotal += maxOpt;
+    if(a !== null && a !== undefined){
+      byCat[q.cat].sum += q.options[a].score;
+      total += q.options[a].score;
+    }
+  });
+  return { total, maxTotal, byCat };
+}
+function tierFor(p){ return TIERS.find(t => p >= t.min && p <= t.max) || TIERS[0]; }
+
+const { total, maxTotal, byCat } = compute();
+const pct = maxTotal ? Math.round((total / maxTotal) * 100) : 0;
+const tier = tierFor(pct);
+const answeredCount = answers.filter(a => a !== null && a !== undefined).length;
+
+// ====== COVER ======
+document.getElementById('cover-score').innerHTML = `${pct}<small>/100</small>`;
+document.getElementById('cover-tier-name').textContent = tier.name;
+document.getElementById('cover-tier-desc').textContent = tier.desc;
+document.getElementById('cover-answered').textContent = answeredCount;
+const dateStr = new Date().toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+document.getElementById('cover-date').textContent = dateStr;
+document.querySelectorAll('#cover-ladder .rung').forEach((r, idx) => {
+  r.classList.toggle('current', TIERS[idx].name === tier.name);
+});
+
+// ====== SUMMARY ======
+const catScores = CATEGORIES.map(c => {
+  const b = byCat[c.id];
+  const p = b.max ? Math.round((b.sum / b.max) * 100) : 0;
+  return { cat:c, pct:p };
+});
+const sumCatsEl = document.getElementById('sum-cats');
+catScores.forEach(({cat, pct:p}) => {
+  const row = document.createElement('div');
+  row.className = 'cat-row';
+  const tone = p >= 70 ? ' high' : p < 50 ? ' low' : '';
+  row.innerHTML = `<span class="name">${cat.name}</span><div class="track"><div class="tf${tone}" style="width:${p}%"></div></div><span class="val">${p}</span>`;
+  sumCatsEl.appendChild(row);
+});
+
+const sortedDesc = [...catScores].sort((a,b) => b.pct - a.pct);
+const sortedAsc  = [...catScores].sort((a,b) => a.pct - b.pct);
+const strengths = sortedDesc.slice(0,2);
+const gaps = sortedAsc.slice(0,2);
+document.getElementById('sum-strengths').innerHTML = strengths.map(s => `<li><b>${s.cat.name}</b> — ${STR[s.cat.id]}</li>`).join('');
+document.getElementById('sum-gaps').innerHTML = gaps.map(s => `<li><b>${s.cat.name}</b> — ${GAP[s.cat.id]}</li>`).join('');
+const weakest = gaps[0].cat.name.toLowerCase();
+document.getElementById('sum-narrative').textContent =
+  `${tier.desc} Based on your answers, ${weakest} is the first wall you'll hit — addressing it unlocks most of the higher-value automation projects on the next page.`;
+document.getElementById('summary-lede').textContent =
+  `${strengths[0].cat.name} and ${strengths[1].cat.name} are your strongest categories. ${gaps[0].cat.name} and ${gaps[1].cat.name} need attention before scaling automation.`;
+
+// ====== OPPORTUNITIES ======
+const weakMap = {}; catScores.forEach(c => weakMap[c.cat.id] = c.pct);
+const ranked = OPPS.map(o => {
+  const pctSum = o.cats.reduce((a,c) => a + (weakMap[c] ?? 50), 0) / o.cats.length;
+  return { ...o, relevance: 100 - pctSum };
+}).sort((a,b) => b.relevance - a.relevance).slice(0, 4);
+
+const opEl = document.getElementById('opps-list');
+const rankLabels = ['Quick Win','Medium lift','Foundational','Bonus'];
+ranked.forEach((o, i) => {
+  const d = document.createElement('div');
+  d.className = 'opp';
+  d.innerHTML = `
+    <div class="rank">#${i+1}<small>${rankLabels[i]}</small></div>
+    <div>
+      <h4>${o.title}</h4>
+      <p>${o.desc}</p>
+    </div>
+    <div class="meta">
+      <span class="impact">${o.impact}</span>
+      <span class="build">${o.build}</span>
+    </div>`;
+  opEl.appendChild(d);
+});
+
+// ====== ROADMAP — phase 1 keyed to weakest category ======
+const phase1Items = PHASE1[gaps[0].cat.id] || [];
+document.getElementById('phase-1').innerHTML = phase1Items.map(t => `<li>${t}</li>`).join('') +
+  `<li style="color:var(--muted); font-style:italic">Anchor: ${gaps[0].cat.name} (${gaps[0].pct}/100)</li>`;
+
+// ====== APPENDIX — Q&A list ======
+const qaEl = document.getElementById('qa-list');
+QUESTIONS.forEach((q, i) => {
+  const cat = CATEGORIES.find(c => c.id === q.cat);
+  const a = answers[i];
+  const ans = (a === null || a === undefined) ? '<span class="skip">(skipped)</span>' : q.options[a].t;
+  const item = document.createElement('div');
+  item.className = 'qa-item';
+  item.innerHTML = `
+    <span class="num">${String(i+1).padStart(2,'0')}</span>
+    <span class="q"><span class="cat">${cat.short}</span>${q.text}</span>
+    <span class="a">${ans}</span>`;
+  qaEl.appendChild(item);
+});
+
+// ====== AUTO-PRINT (after fonts load) ======
+const params = new URLSearchParams(location.search);
+if(params.get('print') === '1'){
+  Promise.all([
+    document.fonts ? document.fonts.ready : Promise.resolve(),
+    new Promise(r => setTimeout(r, 600))
+  ]).then(() => window.print());
+}
+</script>
+</body>
+</html>

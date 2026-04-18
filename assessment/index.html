@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Business Readiness Assessment — Decentralized Machine Automation</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Score your business's automation readiness in 5 minutes. Get a tiered report and a ranked list of high-leverage opportunities." />
+<link rel="icon" href="/assets/images/icon.png" type="image/png" />
+<link rel="canonical" href="https://decentralizedma.com/assessment/" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:   #1C3423;   /* deep forest */
+    --secondary: #67A97B;   /* sage */
+    --accent:    #337551;   /* mid green */
+    --neutral:   #E8E4DD;   /* warm bone */
+    --paper:     #FBFAF7;
+    --ink:       #1C3423;
+    --muted:     #6E7770;
+    --line:      #C8C2B8;
+    --soft:      #F2EFE9;
+    --head: 'Instrument Sans', system-ui, sans-serif;
+    --body: 'Work Sans', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--body); min-height:100vh; -webkit-font-smoothing:antialiased;}
+
+  /* ============ Header ============ */
+  header.top{
+    padding:18px 40px;
+    border-bottom:1px solid var(--line);
+    background:var(--paper);
+    position:sticky; top:0; z-index:10;
+    display:flex; align-items:center; gap:18px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:12px;
+  }
+  .logo-mark{
+    width:36px; height:36px; border-radius:8px;
+    background:var(--primary);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--neutral); font-family:var(--head); font-weight:700; font-size:16px;
+    letter-spacing:-0.5px;
+  }
+  .logo-mark svg{width:22px;height:22px}
+  .logo-text{ display:flex; flex-direction:column; line-height:1.1}
+  .logo-text .a{ font-family:var(--head); font-weight:600; font-size:15px; color:var(--primary)}
+  .logo-text .b{ font-family:var(--body); font-size:11px; color:var(--muted); letter-spacing:0.5px}
+
+  .top .title{
+    font-family:var(--head); font-size:14px; color:var(--muted);
+    border-left:1px solid var(--line); padding-left:18px;
+  }
+  .top .title b{color:var(--ink); font-weight:600;}
+
+  .save{
+    margin-left:auto;
+    font-family:var(--body); font-size:12px; color:var(--muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .save .dot{width:6px;height:6px;border-radius:50%;background:var(--secondary);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+  /* ============ Shell ============ */
+  main{ padding:36px 40px 80px; max-width:1100px; margin:0 auto;}
+  .screen{ display:none; opacity:0; transform:translateY(4px); transition:opacity .25s ease, transform .25s ease; }
+  .screen.active{ display:block; opacity:1; transform:none; }
+
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    box-shadow: 0 1px 2px rgba(28,52,35,0.04), 0 8px 24px -16px rgba(28,52,35,0.08);
+  }
+  .card.feature{ background:var(--primary); color:var(--neutral); border-color:var(--primary)}
+  .card.tonal{ background:var(--neutral)}
+
+  .label{ font-family:var(--body); font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); font-weight:500;}
+  h1,h2,h3,h4,h5{ font-family:var(--head); font-weight:600; color:var(--ink); margin:0;}
+  p{ line-height:1.55; color:var(--ink);}
+  .scribble{color:var(--muted); font-size:13px; font-style:italic;}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--body); font-size:14px; font-weight:500;
+    border:1px solid var(--line); background:#fff; color:var(--ink);
+    padding:11px 20px; border-radius:8px;
+    cursor:pointer; transition:all .15s;
+    text-decoration:none;
+  }
+  .btn:hover{border-color:var(--primary); transform:translateY(-1px); box-shadow:0 4px 12px -4px rgba(28,52,35,0.15)}
+  .btn:disabled{opacity:.4; cursor:not-allowed; transform:none; box-shadow:none}
+  .btn.primary{background:var(--primary); color:var(--neutral); border-color:var(--primary)}
+  .btn.primary:hover{background:var(--accent); border-color:var(--accent)}
+  .btn.accent{background:var(--accent); color:#fff; border-color:var(--accent)}
+  .btn.accent:hover{background:var(--primary); border-color:var(--primary)}
+  .btn.ghost{background:transparent}
+
+  .chip{
+    display:inline-block; font-family:var(--body); font-size:11px; font-weight:500;
+    border:1px solid var(--line); padding:3px 10px; border-radius:99px;
+    text-transform:uppercase; letter-spacing:0.5px; color:var(--muted);
+    white-space:nowrap;
+  }
+  .chip.accent{background:var(--accent); color:#fff; border-color:var(--accent)}
+  .chip.primary{background:var(--primary); color:var(--neutral); border-color:var(--primary)}
+  .chip.tonal{background:var(--neutral); border-color:var(--neutral); color:var(--primary)}
+
+  /* ============ Intro ============ */
+  .intro-grid{ display:grid; grid-template-columns: 1.4fr 1fr; gap:24px;}
+  .intro-hero{ padding:44px;}
+  .intro-hero .kicker{ font-family:var(--body); font-size:12px; color:var(--secondary); letter-spacing:2px; text-transform:uppercase; font-weight:600;}
+  .intro-hero h2{ font-family:var(--head); font-size:46px; line-height:1.05; margin:14px 0 14px; letter-spacing:-1px;}
+  .intro-hero p{ font-size:16px; max-width:520px; margin:0 0 14px; color:var(--ink); opacity:0.85}
+  .intro-stats{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:24px 0 28px;
+  }
+  .intro-stats .stat{ border:1px solid var(--line); border-radius:10px; padding:14px; background:var(--soft)}
+  .intro-stats .stat .big{ font-family:var(--head); font-size:28px; font-weight:600; color:var(--primary); line-height:1;}
+  .intro-stats .stat .lbl{ font-family:var(--body); font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-top:6px}
+  .intro-cats{ padding:28px; align-self:start;}
+  .intro-cats h4{ font-family:var(--body); font-size:11px; letter-spacing:1.5px; margin:0 0 16px; color:var(--muted); text-transform:uppercase; font-weight:500;}
+  .intro-cats ol{ padding:0; margin:0; list-style:none; display:grid; gap:14px; counter-reset:c}
+  .intro-cats li{ display:flex; gap:14px; align-items:flex-start; counter-increment:c; font-size:14px}
+  .intro-cats li::before{
+    content: counter(c, decimal-leading-zero); font-family:var(--head); font-size:12px;
+    background:var(--neutral); color:var(--primary); border-radius:6px;
+    width:28px;height:28px; display:inline-flex;align-items:center;justify-content:center;
+    flex:0 0 auto; font-weight:600;
+  }
+  .intro-cats li .t{font-family:var(--head); font-size:16px; display:block; line-height:1.1; color:var(--primary); font-weight:600}
+  .intro-cats li .d{ color:var(--muted); font-size:13px; margin-top:2px; display:block;}
+
+  /* ============ Progress ============ */
+  .progress{
+    display:flex; align-items:center; gap:14px; margin-bottom:24px;
+    font-family:var(--body); font-size:12px; color:var(--muted);
+  }
+  .bar{
+    flex:1; height:6px; border-radius:99px; background:var(--neutral); overflow:hidden;
+  }
+  .bar .fill{ height:100%; background:var(--accent); transition:width .4s ease;}
+  .cat-dots{ display:flex; gap:5px;}
+  .cat-dots .d{ width:8px;height:8px;border-radius:50%; background:var(--neutral);}
+  .cat-dots .d.done{background:var(--accent)}
+  .cat-dots .d.here{background:var(--primary)}
+
+  /* ============ Question ============ */
+  .q-wrap{ display:grid; grid-template-columns: 1fr 240px; gap:28px; }
+  .q-card{ padding:44px; min-height:420px; display:flex; flex-direction:column}
+  .q-category{ font-family:var(--body); font-size:11px; color:var(--accent); letter-spacing:1.5px; text-transform:uppercase; font-weight:600;}
+  .q-text{ font-family:var(--head); font-size:32px; line-height:1.15; margin:12px 0 8px; letter-spacing:-0.5px; text-wrap:balance;}
+  .q-hint{ font-size:14px; color:var(--muted); margin-bottom:22px; max-width:580px}
+  .q-opts{ display:grid; gap:8px;}
+  .option{
+    display:flex; align-items:center; gap:14px;
+    padding:14px 18px; border:1px solid var(--line); border-radius:10px;
+    font-size:15px; cursor:pointer; background:#fff;
+    transition:all .15s;
+  }
+  .option:hover{border-color:var(--secondary); background:var(--soft)}
+  .option .dot{
+    width:18px;height:18px;border:1.5px solid var(--line);border-radius:50%;
+    flex:0 0 auto; background:#fff; position:relative;
+  }
+  .option.selected{ background:var(--primary); color:var(--neutral); border-color:var(--primary)}
+  .option.selected .dot{ background:var(--secondary); border-color:var(--secondary)}
+  .option.selected .dot::after{ content:""; position:absolute; inset:4px; border-radius:50%; background:#fff;}
+  .option .score{ margin-left:auto; font-family:var(--body); font-size:11px; color:var(--muted);}
+  .option.selected .score{ color:rgba(232,228,221,0.6)}
+
+  .q-footer{ display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:24px}
+  .skip{ font-family:var(--body); color:var(--muted); cursor:pointer; background:none; border:none; font-size:13px; text-decoration:underline}
+  .skip:hover{color:var(--primary)}
+
+  .q-aside{ align-self:start;}
+  .q-aside h4{ font-family:var(--body); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin:0 0 12px; font-weight:500;}
+  .q-aside ul{list-style:none;padding:0;margin:0;display:grid;gap:6px;font-size:13px}
+  .q-aside li{display:flex;gap:10px;align-items:center; padding:8px 10px; border-radius:8px; color:var(--muted)}
+  .q-aside li .dot2{width:8px;height:8px;border-radius:50%; background:var(--neutral); flex:0 0 auto}
+  .q-aside li.done{color:var(--ink)}
+  .q-aside li.done .dot2{background:var(--accent)}
+  .q-aside li.here{color:var(--primary); font-weight:600; background:var(--soft)}
+  .q-aside li.here .dot2{background:var(--primary)}
+  .q-aside .why{
+    margin-top:18px; padding:14px 16px; background:var(--neutral); border-radius:10px;
+    font-size:13px; color:var(--primary); line-height:1.45; font-style:italic;
+  }
+  .q-aside .why b{font-style:normal; font-family:var(--body); font-weight:600; text-transform:uppercase; letter-spacing:1px; font-size:10px; color:var(--accent); display:block; margin-bottom:4px}
+
+  /* ============ Transition ============ */
+  .cat-transition{ text-align:center; padding:64px 40px;}
+  .cat-transition .kicker{ font-family:var(--body); font-size:12px; color:var(--secondary); letter-spacing:2px; text-transform:uppercase; font-weight:600;}
+  .cat-transition h2{ font-family:var(--head); font-size:48px; line-height:1; margin:14px 0 14px; letter-spacing:-1px;}
+  .cat-transition p{ font-size:17px; max-width:560px; margin:0 auto 28px; color:var(--neutral); opacity:0.85}
+  .cat-transition .count{ font-family:var(--body); font-size:14px; color:var(--neutral); opacity:0.7;}
+  .cat-transition .count b{font-family:var(--head); font-size:24px; color:var(--secondary)}
+
+  /* ============ Results ============ */
+  .results-head{ padding:44px; margin-bottom:22px;}
+  .results-head .kicker{ font-family:var(--body); font-size:11px; color:#E8E4DD; opacity:0.75; letter-spacing:2px; text-transform:uppercase; font-weight:600;}
+  .results-head h2{ font-family:var(--head); font-size:40px; line-height:1.05; margin:10px 0 28px; color:#FFFFFF; letter-spacing:-0.5px; font-weight:600;}
+  .score-block{ display:grid; grid-template-columns: auto 1fr; gap:36px; align-items:center; padding-top:24px; border-top:1px solid rgba(232,228,221,0.18);}
+  .score-num{ font-family:var(--head); font-size:128px; line-height:0.9; color:#FFFFFF; font-weight:600; letter-spacing:-4px; display:flex; align-items:baseline; gap:2px;}
+  .score-num small{ font-family:var(--head); font-size:26px; color:#E8E4DD; opacity:0.6; font-weight:500; letter-spacing:-1px;}
+  .tier-box{ display:flex; flex-direction:column; gap:10px; padding:8px 0 8px 32px; border-left:1px solid rgba(232,228,221,0.18); align-self:stretch; justify-content:center;}
+  .tier-box .chip-wrap{margin-bottom:2px}
+  .tier-name{ font-family:var(--head); font-size:30px; line-height:1; color:#FFFFFF; font-weight:600; letter-spacing:-0.5px;}
+  .tier-desc{ color:#E8E4DD; opacity:0.88; font-size:13.5px; line-height:1.55; max-width:420px;}
+
+  /* ============ Gate ============ */
+  .gate-grid{ display:grid; grid-template-columns: 1.1fr 1fr; gap:22px; align-items:stretch;}
+  .gate-teaser{ padding:40px;}
+  .gate-teaser h2{ font-family:var(--head); font-size:36px; line-height:1.05; margin:10px 0 22px; color:#FFFFFF; letter-spacing:-0.5px; font-weight:600;}
+  .gate-teaser .kicker{ font-family:var(--body); font-size:11px; color:#E8E4DD; opacity:0.75; letter-spacing:2px; text-transform:uppercase; font-weight:600;}
+  .gate-preview{ display:grid; grid-template-columns: auto 1fr; gap:24px; align-items:center; padding:20px 0 24px; border-top:1px solid rgba(232,228,221,0.18); border-bottom:1px solid rgba(232,228,221,0.18); margin-bottom:22px;}
+  .gate-preview .score-num{ font-family:var(--head); font-size:92px; line-height:0.9; color:#FFFFFF; font-weight:600; letter-spacing:-3px; display:flex; align-items:baseline; gap:2px;}
+  .gate-preview .score-num small{ font-family:var(--head); font-size:22px; color:#E8E4DD; opacity:0.6; font-weight:500; letter-spacing:-1px;}
+  .gate-preview .tier-box{ border-left:1px solid rgba(232,228,221,0.18); padding-left:22px; gap:8px;}
+  .gate-preview .tier-name{ font-size:24px;}
+  .gate-blur{ color:#E8E4DD; opacity:0.85; font-size:14px; line-height:1.6; margin:0 0 16px; max-width:42ch;}
+  .gate-bullets{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;}
+  .gate-bullets li{ color:#E8E4DD; opacity:0.9; font-size:13.5px; padding-left:20px; position:relative; line-height:1.5;}
+  .gate-bullets li::before{ content:''; position:absolute; left:0; top:8px; width:10px; height:2px; background:var(--secondary); }
+  .gate-bullets b{ color:#FFFFFF; font-weight:600; opacity:1; }
+
+  .gate-form{ padding:32px; display:flex; flex-direction:column; gap:14px;}
+  .gate-form h3{ font-family:var(--head); font-size:24px; margin:0; color:var(--primary); font-weight:600; letter-spacing:-0.3px;}
+  .gate-sub{ color:var(--muted); font-size:13px; line-height:1.5; margin:0 0 6px;}
+  .gate-form label{ display:flex; flex-direction:column; gap:6px; font-family:var(--body); font-size:12px; font-weight:500; color:var(--primary); text-transform:uppercase; letter-spacing:0.8px;}
+  .gate-form input[type=text], .gate-form input[type=email], .gate-form select{
+    font-family:var(--body); font-size:15px; padding:11px 14px; border:1px solid var(--line); border-radius:10px;
+    background:#fff; color:var(--primary); text-transform:none; letter-spacing:normal; font-weight:400;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .gate-form input:focus, .gate-form select:focus{ outline:none; border-color:var(--accent); box-shadow: 0 0 0 3px rgba(51,117,81,0.15);}
+  .gate-row{ display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .gate-check{ flex-direction:row !important; align-items:flex-start; gap:10px; text-transform:none !important; letter-spacing:normal !important; font-weight:400 !important; font-size:12.5px !important; color:var(--muted) !important; line-height:1.5; margin-top:4px;}
+  .gate-check input{ margin-top:3px; accent-color:var(--accent);}
+  #gate-submit{ margin-top:6px; padding:14px 20px; font-size:15px;}
+  .gate-legal{ font-size:11.5px; color:var(--muted); text-align:center; margin:6px 0 0; letter-spacing:0.2px;}
+  .gate-legal a{ color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent);}
+
+  @media (max-width: 860px){
+    .gate-grid{ grid-template-columns:1fr; }
+    .gate-row{ grid-template-columns:1fr; }
+  }
+  .tier-ladder{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:28px;
+  }
+  .tier-ladder .rung{
+    border:1px solid rgba(232,228,221,0.2); padding:12px; border-radius:10px;
+    color:var(--neutral); opacity:0.55; transition:all .2s;
+  }
+  .tier-ladder .rung .label{color:var(--neutral); opacity:0.6}
+  .tier-ladder .rung.current{ background:var(--secondary); color:var(--primary); border-color:var(--secondary); opacity:1;}
+  .tier-ladder .rung.current .label{color:var(--primary); opacity:0.7}
+  .tier-ladder .rung .n{ font-family:var(--head); font-size:16px; margin-top:4px; font-weight:600;}
+
+  .results-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  .cat-scores{ padding:28px;}
+  .cat-scores h3{ font-family:var(--head); font-size:22px; margin:0 0 18px; font-weight:600;}
+  .cat-row{ display:grid; grid-template-columns:140px 1fr 36px; gap:12px; align-items:center; font-size:14px; margin-bottom:12px;}
+  .cat-row .name{font-weight:500}
+  .cat-row .track{height:8px;border-radius:99px; background:var(--neutral); overflow:hidden}
+  .cat-row .tf{height:100%;background:var(--accent); transition:width .6s ease}
+  .cat-row .tf.low{background:var(--secondary); opacity:0.7}
+  .cat-row .tf.high{background:var(--primary)}
+  .cat-row .val{font-family:var(--head); font-size:14px; text-align:right; color:var(--primary); font-weight:600}
+
+  .narrative{ padding:28px;}
+  .narrative h3{ font-family:var(--head); font-size:22px; margin:0 0 12px; font-weight:600;}
+  .narrative p{ font-size:14px; line-height:1.55; margin:0 0 12px; color:var(--ink); opacity:0.85;}
+  .narrative .bullets{ padding:0; margin:6px 0 0; list-style:none; display:grid; gap:8px}
+  .narrative .bullets li{ padding-left:20px; position:relative; font-size:13px; line-height:1.45}
+  .narrative .bullets li::before{ content:"●"; position:absolute; left:0; color:var(--accent); font-size:10px; top:5px}
+  .narrative .bullets li b{font-weight:600; color:var(--primary)}
+
+  .opps{ grid-column:1/-1; padding:28px;}
+  .opps h3{ font-family:var(--head); font-size:24px; margin:0 0 6px; font-weight:600;}
+  .opps .sub{font-size:14px; color:var(--muted); margin:0 0 20px}
+  .opps-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .opp{ border:1px solid var(--line); border-radius:12px; padding:20px; background:#fff; display:flex; flex-direction:column}
+  .opp .rank{ display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:12px; flex-wrap:wrap; row-gap:6px;}
+  .opp h4{ font-family:var(--head); font-size:18px; margin:0 0 8px; line-height:1.2; color:var(--primary); font-weight:600;}
+  .opp p{ font-size:13px; color:var(--muted); margin:0 0 14px; line-height:1.45;}
+  .opp .savings{ font-family:var(--body); font-size:13px; color:var(--accent); border-top:1px solid var(--line); padding-top:12px; font-weight:600; margin-top:auto;}
+
+  .cta{
+    grid-column:1/-1; padding:28px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+    background:var(--neutral); border-color:var(--neutral);
+  }
+  .cta .words{ flex:1; min-width:280px}
+  .cta .words h3{ font-family:var(--head); font-size:24px; margin:0; color:var(--primary); font-weight:600;}
+  .cta .words p{ margin:6px 0 0; color:var(--muted); font-size:14px; max-width:520px}
+
+  /* ============ Tweaks ============ */
+  .tweaks{
+    position:fixed; bottom:20px; right:20px; z-index:50;
+    background:#fff; border:1px solid var(--line); border-radius:12px;
+    padding:16px 18px; font-family:var(--body); font-size:13px;
+    display:none; width:270px;
+    box-shadow: 0 8px 32px -8px rgba(28,52,35,0.18);
+  }
+  .tweaks.on{display:block}
+  .tweaks h4{ font-family:var(--body); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; margin:0 0 12px; color:var(--muted); font-weight:500;}
+  .tweaks label{ display:flex; justify-content:space-between; align-items:center; gap:8px; margin:8px 0;}
+  .tweaks select{ font-family:var(--body); font-size:12px; padding:4px 6px; border:1px solid var(--line); border-radius:6px;}
+
+  @media (max-width: 900px){
+    .q-wrap, .results-grid, .intro-grid, .opps-grid{ grid-template-columns:1fr; }
+    .q-aside{ order:-1 }
+    .tier-ladder{ grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="logo">
+    <a href="/" aria-label="DMA Home">
+      <img src="/assets/images/logo.png" alt="Decentralized Machine Automation" style="height:40px; width:auto; display:block" />
+    </a>
+    <div class="logo-text" style="border-left:2px solid var(--line); padding-left:12px; margin-left:2px">
+      <span class="a">Decentralized Machine Automation</span>
+      <span class="b">Autonomous Systems · Distributed Control</span>
+    </div>
+  </div>
+  <div class="title"><b>Business Readiness Assessment</b></div>
+  <div class="save"><span class="dot"></span>Auto-saving</div>
+</header>
+
+<main>
+
+<!-- ============ INTRO ============ -->
+<section class="screen active" id="s-intro">
+  <div class="intro-grid">
+    <div class="card intro-hero">
+      <span class="kicker">15-minute readiness check</span>
+      <h2>Is your business ready to automate?</h2>
+      <p>A short diagnostic across six areas that determine whether AI and automation can actually reduce your labor costs, increase revenue, and prepare your team for what's next.</p>
+      <p class="scribble">Answer honestly — there are no right answers, only your starting point.</p>
+      <div class="intro-stats">
+        <div class="stat"><div class="big">25</div><div class="lbl">Questions</div></div>
+        <div class="stat"><div class="big">~12</div><div class="lbl">Minutes</div></div>
+        <div class="stat"><div class="big">6</div><div class="lbl">Categories</div></div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+        <button class="btn primary" id="start-btn">Start the assessment →</button>
+      </div>
+    </div>
+
+    <aside class="card intro-cats">
+      <h4>What we'll cover</h4>
+      <ol>
+        <li><div><span class="t">Processes</span><span class="d">How documented &amp; repeatable is the work?</span></div></li>
+        <li><div><span class="t">Data</span><span class="d">Is your operational data accessible and trustworthy?</span></div></li>
+        <li><div><span class="t">Tech Stack</span><span class="d">Do your tools talk to each other?</span></div></li>
+        <li><div><span class="t">Team &amp; Skills</span><span class="d">Appetite and fluency for AI-assisted work</span></div></li>
+        <li><div><span class="t">Labor Inventory</span><span class="d">Where does time actually go each week?</span></div></li>
+        <li><div><span class="t">Leadership</span><span class="d">Buy-in, budget, patience for the payoff</span></div></li>
+      </ol>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ QUESTION ============ -->
+<section class="screen" id="s-question">
+  <div class="progress">
+    <span id="p-count">Q 01 / 25</span>
+    <div class="bar"><div class="fill" id="p-fill" style="width:4%"></div></div>
+    <span id="p-remaining">~12 min left</span>
+    <div class="cat-dots" id="p-cats"></div>
+  </div>
+
+  <div class="q-wrap">
+    <div class="card q-card" id="q-card">
+      <span class="q-category" id="q-category">Category 01 · Processes</span>
+      <div class="q-text" id="q-text">Loading question…</div>
+      <div class="q-hint" id="q-hint"></div>
+      <div class="q-opts" id="q-opts"></div>
+
+      <div class="q-footer">
+        <button class="skip" id="q-skip">Skip — I'll come back</button>
+        <div style="display:flex; gap:10px">
+          <button class="btn" id="q-back">← Back</button>
+          <button class="btn primary" id="q-next" disabled>Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="q-aside">
+      <h4>Sections</h4>
+      <ul id="q-sections"></ul>
+      <div class="why" id="q-why"><b>Why we ask</b>This helps us gauge where automation can plug in without breaking things.</div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ TRANSITION ============ -->
+<section class="screen" id="s-transition">
+  <div class="card feature cat-transition">
+    <span class="kicker" id="t-kicker">Section 02 of 06 complete</span>
+    <h2 id="t-title" style="color:var(--neutral)">Nice work.</h2>
+    <p id="t-body">You've finished the Data section. Up next: how your systems talk to each other.</p>
+    <div class="count" id="t-count">Running score: <b>62</b> · 12 of 25 answered</div>
+    <div style="margin-top:28px; display:flex; gap:10px; justify-content:center">
+      <button class="btn ghost" id="t-back" style="background:transparent; color:var(--neutral); border-color:rgba(232,228,221,0.3)">Take a breather</button>
+      <button class="btn" id="t-continue" style="background:var(--secondary); color:var(--primary); border-color:var(--secondary)">Start next section →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EMAIL GATE ============ -->
+<section class="screen" id="s-gate">
+  <div class="gate-grid">
+    <div class="card feature gate-teaser">
+      <span class="kicker">You're done · 25 of 25</span>
+      <h2>Your readiness score is ready.</h2>
+      <div class="gate-preview">
+        <div class="score-num" id="g-score">62<small>/100</small></div>
+        <div class="tier-box">
+          <div class="chip-wrap"><span class="chip" id="g-tier-chip" style="background:rgba(232,228,221,0.12); color:#FFFFFF; border-color:rgba(232,228,221,0.3)">Developing</span></div>
+          <div class="tier-name" id="g-tier-name">Developing</div>
+        </div>
+      </div>
+      <p class="gate-blur">Unlock your full report to see your per-category breakdown, top 3 automation opportunities, and a 90-day roadmap tailored to your weakest areas.</p>
+      <ul class="gate-bullets">
+        <li><b>Full scored report</b> across all 6 categories</li>
+        <li><b>Top 3 automation opportunities</b> personalized to your gaps</li>
+        <li><b>Suggested 90-day roadmap</b></li>
+        <li><b>Downloadable PDF</b> to share internally</li>
+      </ul>
+    </div>
+    <form class="card gate-form" id="gate-form">
+      <h3>Where should we send it?</h3>
+      <p class="gate-sub">Free. No card. You'll get your PDF + a short follow-up from our team with notes on your top opportunities.</p>
+      <label>
+        <span>Your name</span>
+        <input type="text" name="name" required placeholder="Alex Chen" autocomplete="name"/>
+      </label>
+      <label>
+        <span>Work email</span>
+        <input type="email" name="email" required placeholder="alex@company.com" autocomplete="email"/>
+      </label>
+      <div class="gate-row">
+        <label>
+          <span>Company</span>
+          <input type="text" name="company" required placeholder="Acme Co." autocomplete="organization"/>
+        </label>
+        <label>
+          <span>Your role</span>
+          <select name="role" required>
+            <option value="">Select…</option>
+            <option>Founder / CEO</option>
+            <option>Ops / COO</option>
+            <option>Technology / CTO</option>
+            <option>Finance / CFO</option>
+            <option>Department head</option>
+            <option>Other</option>
+          </select>
+        </label>
+      </div>
+      <label class="gate-check">
+        <input type="checkbox" name="consent" required />
+        <span>It's OK to email me about my results and related automation insights. We never share your data.</span>
+      </label>
+      <button type="submit" class="btn primary" id="gate-submit">Unlock my report →</button>
+      <p class="gate-legal">Already have your results? <a href="#" id="gate-skip">Skip</a> · Takes less than 30 seconds.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section class="screen" id="s-results">
+  <div class="card feature results-head">
+    <span class="kicker">Your readiness report · April 17, 2026</span>
+    <h2>Here's where you stand.</h2>
+    <div class="score-block">
+      <div class="score-num" id="r-score">62<small>/100</small></div>
+      <div class="tier-box">
+        <div class="chip-wrap"><span class="chip" id="r-tier-chip" style="background:rgba(232,228,221,0.12); color:#FFFFFF; border-color:rgba(232,228,221,0.3); backdrop-filter:blur(4px)">Developing</span></div>
+        <div class="tier-name" id="r-tier-name">Developing</div>
+        <div class="tier-desc" id="r-tier-desc">You've got real foundations. A few targeted fixes unlock meaningful gains — and you're well-positioned to pilot automation within a quarter.</div>
+      </div>
+    </div>
+    <div class="tier-ladder" id="r-ladder">
+      <div class="rung" data-tier="0"><div class="label">Beginner</div><div class="n">0–39</div></div>
+      <div class="rung" data-tier="1"><div class="label">Developing</div><div class="n">40–64</div></div>
+      <div class="rung" data-tier="2"><div class="label">Ready</div><div class="n">65–84</div></div>
+      <div class="rung" data-tier="3"><div class="label">Advanced</div><div class="n">85–100</div></div>
+    </div>
+  </div>
+
+  <div class="results-grid">
+    <div class="card cat-scores">
+      <h3>Category breakdown</h3>
+      <div id="r-cats"></div>
+    </div>
+
+    <div class="card narrative">
+      <h3>What this means</h3>
+      <p id="r-narrative">You have a workable foundation. Your team is motivated and your processes are partially documented — but fragmented data and weak integrations will be the first wall you hit.</p>
+      <div class="label" style="margin-top:14px;margin-bottom:8px">Strengths</div>
+      <ul class="bullets" id="r-strengths"></ul>
+      <div class="label" style="margin-top:16px;margin-bottom:8px">Gaps to close first</div>
+      <ul class="bullets" id="r-gaps"></ul>
+    </div>
+
+    <div class="card opps">
+      <h3>Top automation opportunities</h3>
+      <p class="sub">Ranked by impact ÷ effort, given your answers.</p>
+      <div class="opps-grid" id="r-opps"></div>
+    </div>
+
+    <div class="card cta">
+      <div class="words">
+        <h3>Want DMA to walk you through this?</h3>
+        <p>A 30-minute review with our team — we'll refine the roadmap, quote the first pilot, and show you similar projects we've shipped.</p>
+      </div>
+      <button class="btn" id="dl-pdf">Download PDF report</button>
+      <a class="btn accent" href="https://calendar.app.google/gd6ZC7kTfLV4Lqw1A" target="_blank" rel="noopener">Book my review call →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Tweaks -->
+<div class="tweaks" id="tweaks">
+  <h4>Tweaks</h4>
+  <label>Color theme
+    <select id="t-theme">
+      <option value="default">Forest (default)</option>
+      <option value="invert">Sage on dark</option>
+      <option value="warm">Bone + accent</option>
+    </select>
+  </label>
+  <label>Density
+    <select id="t-density">
+      <option value="comfortable">Comfortable</option>
+      <option value="compact">Compact</option>
+    </select>
+  </label>
+  <label>Show "why we ask"
+    <input type="checkbox" id="t-why" checked>
+  </label>
+  <p class="scribble" style="margin:8px 0 0; font-size:11px">Toggle the pencil icon in toolbar →</p>
+</div>
+
+<script>window.addEventListener('error', e => console.log('WINERR:', e.message, e.filename?.split('/').pop(), e.lineno+':'+e.colno));</script>
+<script src="assessment-engine.js"></script>
+</body>
+</html>
