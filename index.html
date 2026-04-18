@@ -1,217 +1,273 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Decentralized Machine Automation — Simplify. Automate. Execute.</title>
-  <meta name="description" content="DMA helps businesses replace manual workflows with AI-powered automations — voice agents, proposal automation, scheduling, and more. Free automation audit." />
+  <meta name="description" content="DMA helps businesses replace manual workflows with AI-powered automations — voice agents, proposal automation, scheduling, and more. Free automation assessment." />
   <link rel="icon" href="assets/images/icon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <!-- ============================================================
-     NAVIGATION
+     NAV
      ============================================================ -->
-<nav class="nav nav--transparent" role="navigation" aria-label="Main navigation">
-  <div class="container nav__inner">
-    <a class="nav__logo" href="#top" aria-label="DMA Home">
-      <img src="assets/images/logo.png" alt="Decentralized Machine Automation" />
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="container nav-inner">
+
+    <a class="brand" href="#top" aria-label="DMA Home">
+      <span class="brand-mark">
+        <img src="assets/images/logo.png" alt="DMA" width="28" height="28" />
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">DMA</span>
+        <span class="brand-sub">Decentralized Machine Automation</span>
+      </span>
     </a>
 
-    <ul class="nav__links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#process">How It Works</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#process">How It Works</a>
+      <a href="#results">Results</a>
+      <a href="#about">About</a>
+    </div>
 
-    <a class="btn btn-primary nav__cta" href="/assessment/">Take the Assessment</a>
+    <div class="nav-ctas">
+      <a class="btn btn-primary" href="/assessment/">Online Assessment <span class="arr">→</span></a>
+      <a class="btn btn-primary" href="tel:+18585644468">Call Assessment <span class="arr">→</span></a>
+    </div>
 
     <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
+
   </div>
 </nav>
 
+<!-- Mobile drawer -->
+<div class="nav__mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#services">Services</a>
+  <a href="#process">How It Works</a>
+  <a href="#results">Results</a>
+  <a href="#about">About</a>
+  <a class="btn btn-primary" href="/assessment/">Online Assessment →</a>
+  <a class="btn btn-primary" href="tel:+18585644468">Call Assessment →</a>
+</div>
+
 <!-- ============================================================
-     SECTION 1 — HERO
+     HERO
      ============================================================ -->
 <section id="top" class="hero">
-  <video class="hero__video"
-         autoplay muted loop playsinline
-         preload="auto"
-         aria-hidden="true">
-    <source src="assets/video/mechanical-to-digital-gears.mp4" type="video/mp4" />
-  </video>
+
+  <!-- Video background -->
+  <div class="hero__video-wrap" aria-hidden="true">
+    <video class="hero__video" autoplay muted loop playsinline preload="auto">
+      <source src="assets/video/mechanical-to-digital-gears.mp4" type="video/mp4" />
+    </video>
+    <div class="hero__veil"></div>
+    <div class="hero__scan"></div>
+  </div>
   <div class="hero__scrim" aria-hidden="true"></div>
-  <div class="container hero__content">
-    <p class="hero__pre">Engineering-Led AI Automation</p>
-    <h1>Your Business Runs on Processes.<br>We Make Them Run Themselves.</h1>
-    <p class="hero__sub">
-      DMA helps businesses replace manual workflows with AI-powered automations —
-      so you can stop doing repetitive work and start scaling.
-    </p>
-    <div class="hero__ctas">
-      <a class="btn btn-primary" href="#contact">Book a Free Automation Audit</a>
-      <a class="btn btn-ghost" href="#services">See Our Services</a>
-    </div>
-    <p class="hero__trust">
-      <span>Houston-based</span>·<span>Engineering-led</span>·<span>Built for growing businesses</span>
-    </p>
-  </div>
-  <a class="hero__scroll-cue" href="#problem" aria-label="Scroll to next section">
-    <span></span>
-  </a>
-</section>
 
-<!-- ============================================================
-     SECTION 2 — PROBLEM
-     ============================================================ -->
-<section id="problem" class="problem">
+  <!-- Meta chip -->
+  <div class="hero-meta" aria-hidden="true">
+    <div class="row"><span class="dot"></span> SYSTEM OPERATIONAL</div>
+  </div>
+
   <div class="container">
-    <span class="section-label">The Problem</span>
-    <h2>You Didn't Start Your Business to Do Data Entry</h2>
-    <p class="problem__body">
-      Every day, your team spends hours on tasks that don't require human judgment —
-      answering the same questions, writing the same proposals, chasing the same follow-ups,
-      updating the same spreadsheets. That's not overhead. That's margin you're leaving on the table.
-    </p>
-    <div class="problem__stats">
-      <div class="stat-card">
-        <div class="stat-card__number">20+ hrs</div>
-        <div class="stat-card__text">spent on repetitive admin tasks every week by the average small business</div>
+    <div class="hero-content">
+      <div class="eyebrow reveal in">Engineering-Led AI Automation</div>
+      <div class="hero-pre reveal in" data-delay="1">Automations that</div>
+      <h1 class="reveal in" data-delay="2">
+        work <span class="accent">while you sleep.</span>
+      </h1>
+      <p class="lead reveal in" data-delay="3">
+        DMA helps business owners replace manual workflows with AI-powered systems — so you can stop doing repetitive work and start scaling.
+      </p>
+      <div class="hero-ctas reveal in" data-delay="4">
+        <a class="btn btn-primary btn-lg" href="/assessment/">Online Assessment <span class="arr">→</span></a>
+        <a class="btn btn-primary btn-lg" href="tel:+18585644468">Call Assessment <span class="arr">→</span></a>
       </div>
-      <div class="stat-card">
-        <div class="stat-card__number">67%</div>
-        <div class="stat-card__text">of small businesses say manual processes are the #1 bottleneck to growth</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card__number">$50K+</div>
-        <div class="stat-card__text">in annual labor cost that automation can recapture for the average small team</div>
+      <div class="hero-stats reveal in" data-delay="4">
+        <div class="stat">
+          <span class="num"><span class="count" data-target="20">0</span><span class="unit">+</span></span>
+          <span class="lbl">hrs per week lost to manual admin work</span>
+        </div>
+        <div class="stat">
+          <span class="num"><span class="count" data-target="67">0</span><span class="unit">%</span></span>
+          <span class="lbl">of owners cite manual work as top growth blocker</span>
+        </div>
+        <div class="stat">
+          <span class="num">$<span class="count" data-target="50">0</span>K</span>
+          <span class="lbl">average annual labor cost recaptured per client</span>
+        </div>
       </div>
     </div>
   </div>
+
 </section>
 
 <!-- ============================================================
-     SECTION 3 — SERVICES
+     TICKER
      ============================================================ -->
-<section id="services" class="services">
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="dot"></span> AI WORKFLOW AUTOMATION</span>
+    <span class="ticker-item"><span class="dot"></span> VOICE AGENTS</span>
+    <span class="ticker-item"><span class="dot"></span> PROPOSAL AUTOMATION</span>
+    <span class="ticker-item"><span class="dot"></span> SCHEDULING</span>
+    <span class="ticker-item"><span class="dot"></span> NEWSLETTER SYSTEMS</span>
+    <span class="ticker-item"><span class="dot"></span> AUTOMATION ASSESSMENTS</span>
+    <span class="ticker-item"><span class="dot"></span> AI WORKFLOW AUTOMATION</span>
+    <span class="ticker-item"><span class="dot"></span> VOICE AGENTS</span>
+    <span class="ticker-item"><span class="dot"></span> PROPOSAL AUTOMATION</span>
+    <span class="ticker-item"><span class="dot"></span> SCHEDULING</span>
+    <span class="ticker-item"><span class="dot"></span> NEWSLETTER SYSTEMS</span>
+    <span class="ticker-item"><span class="dot"></span> AUTOMATION ASSESSMENTS</span>
+    <span class="ticker-item"><span class="dot"></span> AI WORKFLOW AUTOMATION</span>
+    <span class="ticker-item"><span class="dot"></span> VOICE AGENTS</span>
+    <span class="ticker-item"><span class="dot"></span> PROPOSAL AUTOMATION</span>
+    <span class="ticker-item"><span class="dot"></span> SCHEDULING</span>
+    <span class="ticker-item"><span class="dot"></span> NEWSLETTER SYSTEMS</span>
+    <span class="ticker-item"><span class="dot"></span> AUTOMATION ASSESSMENTS</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     01 — PROBLEM
+     ============================================================ -->
+<section id="problem" class="sec problem">
   <div class="container">
-    <span class="section-label">What We Build</span>
-    <h2>AI Automations That Work While You Sleep</h2>
+    <div class="sec-label"><span>01 / PROBLEM</span></div>
+    <div class="problem-grid">
 
-    <!-- Tier Cards -->
-    <div class="tiers">
-      <div class="tier-card tier-card--highlight">
-        <span class="tier-badge tier-badge--muted">Start Here</span>
-        <div class="tier-card__label">Free</div>
-        <h3>Automation Audit</h3>
-        <p>A 30-minute engineering assessment of your operations. We identify your top automation opportunities and deliver a written report — no obligation.</p>
-        <a class="btn btn-primary" href="#contact">Book Your Free Audit</a>
+      <div class="problem-head">
+        <h2 class="sec-title reveal">
+          You didn't start your business to do <em>data entry</em>.
+        </h2>
+        <p class="sec-lead reveal" data-delay="1">
+          Every day, your team spends hours on tasks that don't require human judgment —
+          answering the same questions, writing the same proposals, chasing the same follow-ups.
+          That's not overhead. That's margin you're leaving on the table.
+        </p>
       </div>
 
-      <div class="tier-card">
-        <div class="tier-card__label">Project-Based</div>
-        <h3>Single Automation Build</h3>
-        <p>One complete automation system — designed, built, tested, and deployed. Includes documentation and 30 days of support.</p>
-        <a class="btn btn-ghost" href="#contact" style="color:var(--dark-green);border-color:rgba(28,52,35,0.3);">Get Started</a>
+      <div class="problem-list">
+        <div class="prob-row reveal" data-delay="1">
+          <span class="prob-x">✕</span>
+          <span class="prob-task">Answering the same questions</span>
+          <span class="prob-arrow">→</span>
+          <span class="prob-sol">FAQ &amp; triage</span>
+        </div>
+        <div class="prob-row reveal" data-delay="2">
+          <span class="prob-x">✕</span>
+          <span class="prob-task">Writing repetitive proposals</span>
+          <span class="prob-arrow">→</span>
+          <span class="prob-sol">Template-driven output</span>
+        </div>
+        <div class="prob-row reveal" data-delay="3">
+          <span class="prob-x">✕</span>
+          <span class="prob-task">Chasing follow-ups</span>
+          <span class="prob-arrow">→</span>
+          <span class="prob-sol">Sequence + reminder logic</span>
+        </div>
+        <div class="prob-row reveal" data-delay="4">
+          <span class="prob-x">✕</span>
+          <span class="prob-task">Updating spreadsheets</span>
+          <span class="prob-arrow">→</span>
+          <span class="prob-sol">Sync between systems</span>
+        </div>
+        <div class="prob-row reveal" data-delay="5">
+          <span class="prob-x">✕</span>
+          <span class="prob-task">Missing after-hours calls</span>
+          <span class="prob-arrow">→</span>
+          <span class="prob-sol">Voice agent handles it</span>
+        </div>
+        <div class="prob-row reveal" data-delay="1">
+          <span class="prob-x">✕</span>
+          <span class="prob-task">Manual scheduling back-and-forth</span>
+          <span class="prob-arrow">→</span>
+          <span class="prob-sol">Availability engine</span>
+        </div>
       </div>
 
-      <div class="tier-card tier-card--highlight">
-        <span class="tier-badge">Most Popular</span>
-        <div class="tier-card__label">Custom</div>
-        <h3>Automation Suite</h3>
-        <p>Full workflow assessment plus 2–4 integrated automation systems. Includes a comprehensive system manual and 90 days of support.</p>
-        <a class="btn btn-primary" href="#contact">Schedule a Consultation</a>
-      </div>
-
-      <div class="tier-card">
-        <div class="tier-card__label">Monthly Retainer</div>
-        <h3>Automation Partner</h3>
-        <p>Ongoing monitoring, optimization, and new automation builds as your business evolves. Priority support and monthly performance reporting.</p>
-        <a class="btn btn-ghost" href="#contact" style="color:var(--dark-green);border-color:rgba(28,52,35,0.3);">Let's Talk</a>
-      </div>
     </div>
+  </div>
+</section>
 
-    <!-- Service Cards Grid -->
+<!-- ============================================================
+     02 — SERVICES
+     ============================================================ -->
+<section id="services" class="sec">
+  <div class="container">
+    <div class="sec-label"><span>02 / SERVICES</span></div>
+    <h2 class="sec-title reveal">AI automations that work <em>while you sleep.</em></h2>
+    <p class="sec-lead reveal" data-delay="1">Six systems we build most often. Pick one or build a suite.</p>
+
     <div class="services-grid">
 
-      <!-- 1: AI Workflow Automation -->
-      <div class="service-card">
-        <div class="service-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 17h6M17 14v6"/>
-          </svg>
+      <div class="svc-card">
+        <div class="svc-top">
+          <span class="svc-num">01</span>
+          <span class="svc-tag">Core</span>
         </div>
-        <h3>AI Workflow Automation</h3>
-        <p>Turn your multi-step manual processes into automated systems that run without intervention — from lead capture to invoice delivery.</p>
+        <h3 class="svc-title">AI Workflow Automation</h3>
+        <p class="svc-desc">Turn multi-step manual processes into systems that run themselves — from lead capture to invoice delivery.</p>
+        <a class="svc-foot" href="#contact"><span>Learn more</span><span class="arr">→</span></a>
       </div>
 
-      <!-- 2: Voice Agents -->
-      <div class="service-card">
-        <div class="service-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 2 3.18 2 2 0 0 1 4 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
+      <div class="svc-card">
+        <div class="svc-top">
+          <span class="svc-num">02</span>
+          <span class="svc-tag">24/7</span>
         </div>
-        <h3>Voice Agents</h3>
-        <p>AI-powered phone agents that answer calls, qualify leads, and book appointments 24/7 — without missing a single opportunity.</p>
+        <h3 class="svc-title">Voice Agents</h3>
+        <p class="svc-desc">AI phone agents that answer, qualify, and book appointments 24/7 — without missing a single opportunity.</p>
+        <a class="svc-foot" href="#contact"><span>Learn more</span><span class="arr">→</span></a>
       </div>
 
-      <!-- 3: Newsletter Systems -->
-      <div class="service-card">
-        <div class="service-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="M2 8l10 7 10-7"/>
-          </svg>
+      <div class="svc-card">
+        <div class="svc-top">
+          <span class="svc-num">03</span>
+          <span class="svc-tag">Output</span>
         </div>
-        <h3>Newsletter Systems</h3>
-        <p>Automated email communications that keep your clients informed and your brand top of mind — on a schedule that runs itself.</p>
+        <h3 class="svc-title">Proposal Automation</h3>
+        <p class="svc-desc">Generate professional, customized proposals in minutes instead of hours — from job specs and your brand template.</p>
+        <a class="svc-foot" href="#contact"><span>Learn more</span><span class="arr">→</span></a>
       </div>
 
-      <!-- 4: Proposal Automation -->
-      <div class="service-card">
-        <div class="service-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-            <polyline points="10 9 9 9 8 9"/>
-          </svg>
+      <div class="svc-card">
+        <div class="svc-top">
+          <span class="svc-num">04</span>
+          <span class="svc-tag">Calendar</span>
         </div>
-        <h3>Proposal Automation</h3>
-        <p>Generate professional, customized proposals in minutes instead of hours — automatically from job specs, pricing tables, and your brand template.</p>
+        <h3 class="svc-title">Scheduling Automation</h3>
+        <p class="svc-desc">AI scheduling that checks team availability, eliminates back-and-forth, and sends confirmations automatically.</p>
+        <a class="svc-foot" href="#contact"><span>Learn more</span><span class="arr">→</span></a>
       </div>
 
-      <!-- 5: Scheduling Automation -->
-      <div class="service-card">
-        <div class="service-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-            <line x1="16" y1="2" x2="16" y2="6"/>
-            <line x1="8" y1="2" x2="8" y2="6"/>
-            <line x1="3" y1="10" x2="21" y2="10"/>
-            <circle cx="12" cy="16" r="2"/>
-          </svg>
+      <div class="svc-card">
+        <div class="svc-top">
+          <span class="svc-num">05</span>
+          <span class="svc-tag">Email</span>
         </div>
-        <h3>Scheduling Automation</h3>
-        <p>AI-powered scheduling that eliminates back-and-forth, checks availability across your team, and sends confirmations and reminders automatically.</p>
+        <h3 class="svc-title">Newsletter Systems</h3>
+        <p class="svc-desc">Automated client communications that keep your brand top of mind — on a schedule that runs itself.</p>
+        <a class="svc-foot" href="#contact"><span>Learn more</span><span class="arr">→</span></a>
       </div>
 
-      <!-- 6: Automation Audits -->
-      <div class="service-card">
-        <div class="service-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 11l3 3L22 4"/>
-            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-          </svg>
+      <div class="svc-card">
+        <div class="svc-top">
+          <span class="svc-num">06</span>
+          <span class="svc-tag">Free</span>
         </div>
-        <h3>Automation Audits</h3>
-        <p>A free, engineering-grade assessment of your operations. We map your workflows, identify high-ROI automation opportunities, and deliver a written report.</p>
+        <h3 class="svc-title">Automation Assessments</h3>
+        <p class="svc-desc">Engineering-grade assessment of your operations. Free workflow map + high-ROI automation opportunities.</p>
+        <a class="svc-foot" href="#contact"><span>Learn more</span><span class="arr">→</span></a>
       </div>
 
     </div>
@@ -219,108 +275,49 @@
 </section>
 
 <!-- ============================================================
-     SECTION 4 — HOW IT WORKS
+     03 — PROCESS
      ============================================================ -->
-<section id="process" class="process">
+<section id="process" class="sec process">
   <div class="container">
-    <span class="section-label">How We Work</span>
-    <h2>From Audit to Automation in 4 Weeks</h2>
+    <div class="sec-label"><span>03 / PROCESS</span></div>
+    <h2 class="sec-title reveal">From assessment to automation in <em>4 weeks</em>.</h2>
 
-    <div class="process__steps">
-      <div class="process-step">
-        <div class="process-step__num">1</div>
-        <h3>Audit</h3>
-        <p>We map your current workflows and identify the highest-ROI automation opportunities. Free for every new client.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-step__num">2</div>
-        <h3>Design</h3>
-        <p>We architect the system — selecting tools, defining triggers, and mapping data flows before writing a single line of code.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-step__num">3</div>
-        <h3>Build</h3>
-        <p>We build and test the automations in a controlled environment, then deploy to your live systems after your approval.</p>
-      </div>
-      <div class="process-step">
-        <div class="process-step__num">4</div>
-        <h3>Support</h3>
-        <p>We monitor, optimize, and maintain your automations. You get a complete system manual and ongoing support.</p>
-      </div>
-    </div>
+    <div class="proc-timeline">
+      <div class="proc-line" aria-hidden="true"></div>
 
-    <a class="btn btn-primary" href="#contact">Start With a Free Audit</a>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 5 — WHY DMA / ABOUT
-     ============================================================ -->
-<section id="about" class="about">
-  <div class="container">
-    <div class="about__inner">
-
-      <div class="about__left">
-        <span class="section-label">Why DMA</span>
-        <h2>Engineering-Led.<br>Not Agency Fluff.</h2>
-        <p>DMA was founded by an Electrical and Computer Engineering graduate who saw the same problem across every growing business: smart people buried in dumb work. We don't sell AI hype. We build systems that actually run.</p>
-        <p>Every automation we deliver is designed with engineering discipline — documented, testable, and built to last. Not cobbled-together Zapier chains. Systems.</p>
-
-        <ul class="about__differentiators">
-          <li>
-            <div class="diff-icon">
-              <svg viewBox="0 0 12 12" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="2 6 5 9 10 3"/>
-              </svg>
-            </div>
-            <div>
-              <span class="diff-item__title">Engineering-grade systems</span>
-              Built with rigor — documented, testable, and designed to scale with your business.
-            </div>
-          </li>
-          <li>
-            <div class="diff-icon">
-              <svg viewBox="0 0 12 12" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="2 6 5 9 10 3"/>
-              </svg>
-            </div>
-            <div>
-              <span class="diff-item__title">Built for growing businesses</span>
-              Priced and scoped for companies that do real work — not Fortune 500s with unlimited budgets.
-            </div>
-          </li>
-          <li>
-            <div class="diff-icon">
-              <svg viewBox="0 0 12 12" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="2 6 5 9 10 3"/>
-              </svg>
-            </div>
-            <div>
-              <span class="diff-item__title">Results-based pricing</span>
-              We price on hours saved and revenue gained — not on hours billed.
-            </div>
-          </li>
-        </ul>
+      <div class="proc-step reveal" data-delay="1">
+        <div class="proc-bub">1</div>
+        <div class="proc-body">
+          <div class="proc-week mono">Week 1</div>
+          <h3 class="proc-title">Assessment</h3>
+          <p class="proc-desc">We map your current workflows and identify the highest-ROI automation opportunities.</p>
+        </div>
       </div>
 
-      <div class="about__right">
-        <div class="about__founder-label">The Founder</div>
-        <div class="about__founder-name">Jose Escobar</div>
-        <div class="about__founder-title">Founder &amp; CEO — Decentralized Machine Automation</div>
-        <p class="about__founder-bio">
-          After studying Electrical and Computer Engineering, Jose noticed the same pattern everywhere:
-          businesses with talented people doing work that didn't require talent.
-          Manually entering data. Writing the same emails. Missing calls after hours.
-          <br><br>
-          DMA exists to fix that — by building AI-powered systems that handle the repetitive,
-          predictable parts of your business so your team can focus on the work that actually requires a human.
-        </p>
-        <div class="about__badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-            <polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>
-          ECE Degree · Engineering-Led
+      <div class="proc-step reveal" data-delay="2">
+        <div class="proc-bub">2</div>
+        <div class="proc-body">
+          <div class="proc-week mono">Week 2</div>
+          <h3 class="proc-title">Design</h3>
+          <p class="proc-desc">We architect the system — selecting tools, defining triggers, and mapping data flows before a single line of code.</p>
+        </div>
+      </div>
+
+      <div class="proc-step reveal" data-delay="3">
+        <div class="proc-bub">3</div>
+        <div class="proc-body">
+          <div class="proc-week mono">Week 3</div>
+          <h3 class="proc-title">Build</h3>
+          <p class="proc-desc">We build and test in a controlled environment, then deploy to your live systems after your approval.</p>
+        </div>
+      </div>
+
+      <div class="proc-step reveal" data-delay="4">
+        <div class="proc-bub">4</div>
+        <div class="proc-body">
+          <div class="proc-week mono">Week 4+</div>
+          <h3 class="proc-title">Support</h3>
+          <p class="proc-desc">We monitor, optimize, and maintain. You get a full system manual and ongoing support.</p>
         </div>
       </div>
 
@@ -329,91 +326,160 @@
 </section>
 
 <!-- ============================================================
-     SECTION 6 — SOCIAL PROOF
+     04 — RESULTS
      ============================================================ -->
-<section class="proof">
+<section id="results" class="sec">
   <div class="container">
-    <span class="section-label">Results</span>
-    <h2>What Automation Looks Like in Practice</h2>
+    <div class="sec-label"><span>04 / RESULTS</span></div>
+    <h2 class="sec-title reveal">What automation looks like <em>in practice</em>.</h2>
 
-    <div class="proof-grid">
+    <div class="cases-grid">
 
-      <div class="proof-card">
-        <div class="proof-card__header">
-          <div class="proof-card__type">Professional Services</div>
-          <div class="proof-card__company">Growing Consulting Firm</div>
+      <article class="case-card reveal" data-delay="1">
+        <div>
+          <span class="case-tag mono">Professional Services</span>
+          <h3 class="case-client">Consulting Firm</h3>
         </div>
-        <div class="proof-card__body">
-          <div class="proof-col">
-            <div class="proof-col__label proof-col__label--before">Before</div>
-            <p>3 hours/day on proposal writing. Inconsistent formatting. Proposals taking 2–3 days to send.</p>
+        <div class="case-split">
+          <div class="case-col before">
+            <span class="col-label">Before</span>
+            <p>3 hours/day on proposal writing. Inconsistent formatting. 2–3 days to send.</p>
           </div>
-          <div class="proof-col">
-            <div class="proof-col__label proof-col__label--after">After</div>
-            <p>Proposals generated automatically from job specs in under 10 minutes. Sent same day, every time.</p>
+          <div class="case-col after">
+            <span class="col-label">After</span>
+            <p>Proposals auto-generated from job specs in under 10 minutes. Sent same day, every time.</p>
           </div>
         </div>
-      </div>
-
-      <div class="proof-card">
-        <div class="proof-card__header">
-          <div class="proof-card__type">Field Services</div>
-          <div class="proof-card__company">Local Service Company</div>
+        <div class="case-metric">
+          <span class="m-num">96%</span>
+          <span class="m-lbl">faster to send</span>
         </div>
-        <div class="proof-card__body">
-          <div class="proof-col">
-            <div class="proof-col__label proof-col__label--before">Before</div>
+      </article>
+
+      <article class="case-card reveal" data-delay="2">
+        <div>
+          <span class="case-tag mono">Field Services</span>
+          <h3 class="case-client">Local Service Co.</h3>
+        </div>
+        <div class="case-split">
+          <div class="case-col before">
+            <span class="col-label">Before</span>
             <p>Missed 40% of after-hours calls. No system for qualifying leads overnight.</p>
           </div>
-          <div class="proof-col">
-            <div class="proof-col__label proof-col__label--after">After</div>
-            <p>AI voice agent captures every lead 24/7, qualifies, and books callbacks. Zero missed opportunities.</p>
+          <div class="case-col after">
+            <span class="col-label">After</span>
+            <p>AI voice agent captures every lead 24/7, qualifies, and books callbacks.</p>
           </div>
         </div>
-      </div>
+        <div class="case-metric">
+          <span class="m-num">0</span>
+          <span class="m-lbl">missed leads</span>
+        </div>
+      </article>
 
-      <div class="proof-card">
-        <div class="proof-card__header">
-          <div class="proof-card__type">Operations</div>
-          <div class="proof-card__company">Multi-Location Business</div>
+      <article class="case-card reveal" data-delay="3">
+        <div>
+          <span class="case-tag mono">Operations</span>
+          <h3 class="case-client">Multi-Location Biz</h3>
         </div>
-        <div class="proof-card__body">
-          <div class="proof-col">
-            <div class="proof-col__label proof-col__label--before">Before</div>
-            <p>Manual scheduling across 3 spreadsheets. Double-bookings. 2+ hours/day of admin coordination.</p>
+        <div class="case-split">
+          <div class="case-col before">
+            <span class="col-label">Before</span>
+            <p>Manual scheduling across 3 spreadsheets. Double-bookings. 2+ hrs/day of coordination.</p>
           </div>
-          <div class="proof-col">
-            <div class="proof-col__label proof-col__label--after">After</div>
-            <p>Automated dispatch with real-time calendar sync. Confirmations and reminders sent automatically.</p>
+          <div class="case-col after">
+            <span class="col-label">After</span>
+            <p>Automated dispatch with real-time calendar sync. Confirmations sent automatically.</p>
           </div>
         </div>
-      </div>
+        <div class="case-metric">
+          <span class="m-num">10×</span>
+          <span class="m-lbl">fewer conflicts</span>
+        </div>
+      </article>
 
     </div>
 
-    <p class="proof__disclaimer">Representative automation outcomes. Results vary by business and scope.</p>
+    <p class="case-foot">Representative outcomes. Results vary by business and scope.</p>
   </div>
 </section>
 
 <!-- ============================================================
-     SECTION 7 — CTA / CONTACT
+     05 — ABOUT
      ============================================================ -->
-<section id="contact" class="cta-section">
+<section id="about" class="sec about">
   <div class="container">
-    <h2>Ready to Stop Doing Work a Machine Should Handle?</h2>
-    <p class="cta-section__sub">
-      Book a free 30-minute Automation Audit. We'll map your workflows,
-      identify quick wins, and show you exactly what to automate first.
-    </p>
-    <a class="btn btn-light" href="https://calendar.app.google/gd6ZC7kTfLV4Lqw1A" target="_blank" rel="noopener">
-      Book Your Free Audit
-    </a>
-    <p class="cta-section__secondary">
-      Or reach us directly:
-      <a href="tel:7132992339">713-299-2339</a>
-      &nbsp;·&nbsp;
-      <a href="mailto:jescobar@decentralizedma.com">jescobar@decentralizedma.com</a>
-    </p>
+    <div class="sec-label"><span>05 / ABOUT</span></div>
+    <div class="about-grid">
+
+      <div class="about-main reveal">
+        <h2 class="sec-title">Engineering-led.<br><em>Not agency fluff.</em></h2>
+        <p class="about-lead">
+          DMA was founded by an Electrical and Computer Engineering graduate who saw the same problem everywhere: smart people buried in dumb work. We don't sell AI hype. We build systems that actually run.
+        </p>
+        <p class="about-lead">
+          Every automation we deliver is designed with engineering discipline — documented, testable, built to last. Not cobbled-together Zapier chains. Systems.
+        </p>
+        <div class="about-pills">
+          <span class="pill">Engineering-grade systems</span>
+          <span class="pill">Built for growing businesses</span>
+          <span class="pill">Results-based pricing</span>
+        </div>
+      </div>
+
+      <aside class="founder-card reveal" data-delay="2">
+        <div class="founder-portrait">
+          <img src="assets/images/founder.jpg" alt="Jose Escobar — Founder & CEO" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
+        </div>
+        <div class="founder-body">
+          <div class="founder-name">Jose Escobar</div>
+          <div class="founder-role">Founder &amp; CEO</div>
+          <p class="founder-q">
+            "Businesses with talented people doing work that didn't require talent. DMA exists to fix that."
+          </p>
+          <div class="founder-meta">ECE · Engineering-led · Houston, TX</div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 — CTA / CONTACT
+     ============================================================ -->
+<section id="contact" class="sec cta-sec">
+  <div class="container">
+    <div class="cta-card">
+      <div class="cta-grid-bg" aria-hidden="true"></div>
+      <div class="cta-inner">
+        <span class="cta-eyebrow mono">→ READY TO DEPLOY</span>
+        <h2 class="cta-head">
+          Stop doing work a <em>machine</em> should handle.
+        </h2>
+        <p class="cta-lead">
+          Find out exactly what to automate first — take our assessment online or talk through it live with our voice agent.
+        </p>
+        <div class="cta-actions">
+          <a class="btn btn-primary btn-lg" href="/assessment/">
+            Online Assessment <span class="arr">→</span>
+          </a>
+          <a class="btn btn-primary btn-lg" href="tel:+18585644468">
+            Call Assessment <span class="arr">→</span>
+          </a>
+          <a class="btn btn-primary btn-lg" href="https://calendar.app.google/gd6ZC7kTfLV4Lqw1A" target="_blank" rel="noopener">
+            Book a Personal Appointment <span class="arr">→</span>
+          </a>
+        </div>
+        <div class="cta-meta">
+          <span>info@decentralizedma.com</span>
+          <span class="dot-sep">·</span>
+          <span>Houston, TX</span>
+          <span class="dot-sep">·</span>
+          <span>Response &lt; 24h</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -421,120 +487,120 @@
      FOOTER
      ============================================================ -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
+  <div class="container foot-grid">
 
-      <div>
-        <img class="footer__logo" src="assets/images/logo.png" alt="DMA Logo" />
-        <p class="footer__tagline">
-          Simplify. Automate. Execute.<br><br>
-          Houston, TX · decentralizedma.com
-        </p>
-      </div>
-
-      <div>
-        <div class="footer__col-title">Services</div>
-        <ul class="footer__links">
-          <li><a href="#services">AI Workflow Automation</a></li>
-          <li><a href="#services">Voice Agents</a></li>
-          <li><a href="#services">Newsletter Systems</a></li>
-          <li><a href="#services">Proposal Automation</a></li>
-          <li><a href="#services">Scheduling Automation</a></li>
-          <li><a href="#services">Automation Audits</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="footer__col-title">Connect</div>
-        <div class="footer__contact-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 2 3.18 2 2 0 0 1 4 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-          <a href="tel:7132992339">713-299-2339</a>
-        </div>
-        <div class="footer__contact-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="M2 8l10 7 10-7"/>
-          </svg>
-          <a href="mailto:jescobar@decentralizedma.com">jescobar@decentralizedma.com</a>
-        </div>
-        <div class="footer__contact-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-          Houston, TX
-        </div>
-        <div style="margin-top: 20px;">
-          <a class="btn btn-primary" href="#contact" style="font-size:0.82rem;padding:10px 22px;">Book a Free Audit</a>
-        </div>
-      </div>
-
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="DMA Home">
+        <span class="brand-mark">
+          <img src="assets/images/logo.png" alt="DMA" width="24" height="24" />
+        </span>
+        <span class="brand-name">DMA</span>
+      </a>
+      <p class="foot-tag">Simplify. Automate. Execute.</p>
     </div>
 
-    <div class="footer__bottom">
-      <span class="footer__copy">&copy; 2025 Decentralized Machine Automation LLC. All rights reserved.</span>
-      <span class="footer__copy"><a href="mailto:info@decentralizedma.com" style="color:rgba(232,228,221,0.35);">info@decentralizedma.com</a></span>
+    <div class="foot-col">
+      <div class="foot-h mono">Services</div>
+      <a href="#services">AI Workflow Automation</a>
+      <a href="#services">Voice Agents</a>
+      <a href="#services">Proposal Automation</a>
+      <a href="#services">Scheduling</a>
+      <a href="#services">Assessments</a>
     </div>
+
+    <div class="foot-col">
+      <div class="foot-h mono">Company</div>
+      <a href="#about">About</a>
+      <a href="#process">Process</a>
+      <a href="#results">Case Studies</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="foot-col">
+      <div class="foot-h mono">Connect</div>
+      <a href="tel:7132992339">713-299-2339</a>
+      <a href="mailto:info@decentralizedma.com">info@decentralizedma.com</a>
+      <span>Houston, TX</span>
+    </div>
+
+  </div>
+  <div class="container foot-bottom mono">
+    <span>© 2026 Decentralized Machine Automation LLC. All rights reserved.</span>
+    <span>All systems operational <span class="status-dot" aria-hidden="true"></span></span>
   </div>
 </footer>
 
-<!-- Smooth scroll + mobile menu toggle -->
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
 <script>
-  // Mobile menu toggle
-  const hamburger = document.querySelector('.nav__hamburger');
-  const navLinks  = document.querySelector('.nav__links');
-  const navCta    = document.querySelector('.nav__cta');
-
-  if (hamburger) {
+  // ---- Mobile nav toggle ----
+  const hamburger  = document.querySelector('.nav__hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', () => {
-      const isOpen = navLinks.style.display === 'flex';
-      navLinks.style.display  = isOpen ? '' : 'flex';
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.position = 'absolute';
-      navLinks.style.top = '68px';
-      navLinks.style.left = '0';
-      navLinks.style.right = '0';
-      navLinks.style.background = '#fff';
-      navLinks.style.padding = '20px 24px 24px';
-      navLinks.style.boxShadow = '0 8px 24px rgba(28,52,35,0.1)';
-      navLinks.style.gap = '18px';
-      navCta.style.display = isOpen ? '' : 'none';
-      hamburger.setAttribute('aria-expanded', !isOpen);
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
     });
   }
 
-  // Close mobile menu on link click
-  document.querySelectorAll('.nav__links a').forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth < 768) {
-        navLinks.style.display = '';
-        if (navCta) navCta.style.display = '';
-        hamburger && hamburger.setAttribute('aria-expanded', 'false');
-      }
-    });
-  });
-
-  // Slow down hero video to half speed
+  // ---- Hero video half speed ----
   const heroVideo = document.querySelector('.hero__video');
   if (heroVideo) heroVideo.playbackRate = 0.5;
 
-  // Nav transparent → solid on scroll past hero
+  // ---- Nav scroll state ----
   const navEl  = document.querySelector('.nav');
   const heroEl = document.querySelector('.hero');
   const setNavState = () => {
+    if (!navEl) return;
     const threshold = heroEl ? heroEl.offsetHeight - 80 : 400;
-    if (window.scrollY > threshold) {
-      navEl.classList.remove('nav--transparent');
-      navEl.classList.add('nav--solid');
-    } else {
-      navEl.classList.add('nav--transparent');
-      navEl.classList.remove('nav--solid');
-    }
+    navEl.classList.toggle('scrolled', window.scrollY > threshold);
   };
   setNavState();
   window.addEventListener('scroll', setNavState, { passive: true });
+
+  // ---- Reveal on scroll ----
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('in'); revealIO.unobserve(en.target); }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => revealIO.observe(el));
+  // Failsafe for elements already in viewport
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('in');
+    });
+  }, 100);
+
+  // ---- Animated stat counters ----
+  const counters = document.querySelectorAll('.count[data-target]');
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el  = en.target;
+      const target = parseFloat(el.dataset.target);
+      const dur  = 1200;
+      const start = performance.now();
+      const tick  = (now) => {
+        const p     = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      counterIO.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  counters.forEach(el => counterIO.observe(el));
 </script>
 
 </body>
