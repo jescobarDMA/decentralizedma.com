@@ -583,7 +583,7 @@ a.svc-foot { text-decoration: none; }
 
 /* ---- Assessment Funnel (03 / ASSESSMENT section) ---- */
 .assess-steps {
-  display: grid;
+  display: grid !important;
   grid-template-columns: 1fr auto 1fr;
   gap: 0 2rem;
   align-items: start;
