@@ -166,15 +166,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: flex; align-items: center; gap: 12px; color: var(--fg); flex-shrink: 0; }
-.brand-mark {
-  display: grid; place-items: center;
-  width: 40px; height: 40px;
-  border: 1px solid var(--line-2);
-  border-radius: 10px;
-  background: color-mix(in oklab, var(--accent) 6%, transparent);
-  overflow: hidden;
-}
-.brand-mark img { width: 28px; height: 28px; object-fit: contain; display: block; }
+.brand-mark { display: inline-flex; align-items: center; }
+.brand-mark img { width: 56px; height: 56px; object-fit: contain; display: block; }
 .brand-text { display: flex; flex-direction: column; line-height: 1; }
 .brand-name { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; font-size: 17px; }
 .brand-sub { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-3); margin-top: 4px; }
@@ -207,7 +200,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 /* Mobile drawer */
 .nav__mobile-menu {
   display: none;
-  position: fixed; top: 73px; left: 0; right: 0;
+  position: fixed; top: 89px; left: 0; right: 0;
   background: color-mix(in oklab, var(--bg) 94%, transparent);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -225,6 +218,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   .nav-links, .nav-ctas { display: none; }
   .brand-sub { display: none; }
   .nav__hamburger { display: flex; }
+  .brand-mark img { width: 44px; height: 44px; }
 }
 
 /* ============================================================
