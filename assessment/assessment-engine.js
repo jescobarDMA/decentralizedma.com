@@ -373,31 +373,22 @@ if (gateForm) gateForm.addEventListener('submit', (e) => {
     })
   );
 
+  lead.answers = state.answers;
+
   state.unlocked = true;
   state.lead = lead;
   save();
 
-  // TODO: set before production — see setup-sheets.md
-  // Google Sheets webhook — replace SHEETS_WEBHOOK_URL with your deployed Apps Script URL.
-  const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbz2omY-_KPy-fupLkJykjWflYKvWqQ9eOjPJE33o6cvxwhO5ChumocPLbDF1k2t6LH-UQ/exec';
-  if (SHEETS_WEBHOOK_URL && !SHEETS_WEBHOOK_URL.startsWith('PASTE_')) {
-    // no-cors + form body so it works cross-origin without CORS headers
-    const body = new URLSearchParams();
-    Object.entries(lead).forEach(([k,v]) => body.append(k, typeof v === 'object' ? JSON.stringify(v) : String(v ?? '')));
-    fetch(SHEETS_WEBHOOK_URL, { method:'POST', mode:'no-cors', body }).catch(err => console.warn('[DMA lead webhook failed]', err));
-  }
+  const LEAD_WEBHOOK_URL = 'https://n8n.srv1128508.hstgr.cloud/webhook/dma-web-assessment-lead';
+  const body = new URLSearchParams();
+  Object.entries(lead).forEach(([k,v]) => body.append(k, typeof v === 'object' ? JSON.stringify(v) : String(v ?? '')));
+  fetch(LEAD_WEBHOOK_URL, { method:'POST', mode:'no-cors', body }).catch(err => console.warn('[DMA lead webhook failed]', err));
   window.dispatchEvent(new CustomEvent('dma:lead', { detail: lead }));
 
   renderResults();
   show('results');
   window.scrollTo({top:0, behavior:'instant'});
 });
-document.getElementById('gate-skip')?.addEventListener('click', (e) => {
-  e.preventDefault();
-  state.unlocked = true; save();
-  renderResults(); show('results');
-});
-
 // PDF download
 document.getElementById('dl-pdf')?.addEventListener('click', () => {
   const { total, maxTotal } = currentScore();

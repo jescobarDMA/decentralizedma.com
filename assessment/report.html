@@ -503,7 +503,7 @@ const OPPS = [
 // Load saved answers (set by main app dl button)
 let answers = null;
 try {
-  const s = JSON.parse(localStorage.getItem('dma-print-state') || localStorage.getItem('dma-answers') || 'null');
+  const s = window.INJECTED_STATE || JSON.parse(localStorage.getItem('dma-print-state') || localStorage.getItem('dma-answers') || 'null');
   if(s && Array.isArray(s.answers) && s.answers.length === QUESTIONS.length){
     answers = s.answers;
   }
