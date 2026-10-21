@@ -616,3 +616,33 @@ a.svc-foot { text-decoration: none; }
   .assess-steps { grid-template-columns: 1fr; }
   .assess-arrow { transform: rotate(90deg); padding-top: 0; }
 }
+
+/* ===== AI Jumpstart (21OCT26) ===== */
+.hero-quiz-link{display:inline-block;margin-top:16px;font-size:14px;color:var(--fg-2);text-decoration:underline;text-underline-offset:3px}
+.hero-quiz-link:hover{color:var(--accent)}
+.jumpstart{background:var(--bg-1);border-top:1px solid var(--line)}
+.js-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:24px}
+.js-card{display:flex;flex-direction:column;gap:18px;padding:36px 32px}
+.js-card .assess-list li{font-size:15px;line-height:1.55}
+.js-card .btn{align-self:flex-start}
+.foot-cta{margin-top:18px}
+@media (max-width:900px){.js-grid{grid-template-columns:1fr}.js-card{padding:28px 22px}.js-card .btn{align-self:stretch;justify-content:center;text-align:center}}
+/* Mobile menu button fix: .nav__mobile-menu a overrides .btn padding/color */
+.nav__mobile-menu a.btn{padding:14px 20px;border-bottom:1px solid var(--line-2);border-radius:999px}
+.nav__mobile-menu a.btn-primary{color:#08121a;border-color:var(--accent)}
+.nav__mobile-menu a.btn-ghost{color:var(--fg)}
+
+/* Hero stats: two items */
+.hero-stats { grid-template-columns: repeat(2, minmax(0,1fr)); max-width: 560px; gap: 32px; }
+@media (max-width: 900px) {
+  .hero-stats { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; max-width: none; }
+}
+/* Even spacing between Book button, quiz link and stats */
+.hero-content .hero-ctas { margin-bottom: 0; }
+.hero-quiz-link { margin: 16px 0 40px; }
+
+/* Sourced hero stats (static text, no count-up) */
+.stat .num-static { white-space: nowrap; }
+.hero-sources { grid-column: 1 / -1; margin: -6px 0 0; font-size: 11px; line-height: 1.5; color: var(--fg-3); }
+.hero-sources a { color: var(--fg-3); text-decoration: underline; text-underline-offset: 2px; }
+.hero-sources a:hover { color: var(--fg-2); }

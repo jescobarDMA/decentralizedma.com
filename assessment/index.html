@@ -311,6 +311,24 @@
     .q-aside{ order:-1 }
     .tier-ladder{ grid-template-columns:repeat(2,1fr)}
   }
+  /* ===== Mobile overflow fix (21OCT26) ===== */
+  .intro-grid, .q-wrap, .results-grid, .opps-grid, .gate-grid{ min-width:0 }
+  .intro-grid > *, .q-wrap > *, .results-grid > *{ min-width:0 }
+  @media (max-width: 900px){
+    .q-wrap, .results-grid, .intro-grid, .opps-grid{ grid-template-columns:minmax(0,1fr); }
+  }
+  @media (max-width: 600px){
+    header.top{ padding:12px 16px; gap:10px; flex-wrap:wrap; }
+    .logo-text .b{ display:none; }
+    .top .title{ border-left:0; padding-left:0; flex-basis:100%; order:3; font-size:13px; }
+    main{ padding:20px 16px 60px; }
+    .intro-hero{ padding:24px 20px; }
+    .intro-hero h2{ font-size:32px; }
+    .intro-stats{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+    .intro-stats .stat{ padding:10px; }
+    .intro-stats .stat .lbl{ letter-spacing:0; }
+    .intro-cats{ padding:22px 20px; }
+  }
 </style>
 </head>
 <body>
@@ -519,7 +537,7 @@
       </div>
       <button class="btn" id="dl-pdf">Download PDF report</button>
       <!-- TODO: Replace https://buy.stripe.com/4gMcN65ZEaancYl3cA3Nm00 with your Stripe $500 Payment Link URL -->
-      <a class="btn accent" href="https://buy.stripe.com/4gMcN65ZEaancYl3cA3Nm00" target="_blank" rel="noopener">Schedule Automation Blueprint ($500) →</a>
+      <a class="btn accent" href="https://buy.stripe.com/4gMcN65ZEaancYl3cA3Nm00" target="_blank" rel="noopener">Get the $500 Automation Blueprint →</a>
     </div>
   </div>
 </section>
