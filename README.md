@@ -1,6 +1,6 @@
 # decentralizedma.com
 
-Marketing website for **Decentralized Machine Automation (DMA)** — engineering-led AI automation for electrical service companies in Houston and beyond.
+Marketing website for **Decentralized Machine Automation (DMA)** — engineering-led AI automation for electrical service companies.
 
 **Tagline:** Simplify. Automate. Execute.
 **Contact:** jescobar@decentralizedma.com

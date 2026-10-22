@@ -6,7 +6,7 @@ Internal reference document covering project context, design decisions, and work
 
 ## 1. Project Overview
 
-**What it is:** Marketing landing page for Decentralized Machine Automation (DMA) — engineering-led AI automation for electrical service companies in Houston and beyond.
+**What it is:** Marketing landing page for Decentralized Machine Automation (DMA) — engineering-led AI automation for electrical service companies.
 
 | Field | Value |
 |---|---|
